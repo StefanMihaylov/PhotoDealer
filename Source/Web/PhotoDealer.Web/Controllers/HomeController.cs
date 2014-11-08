@@ -7,6 +7,9 @@
     using System.Web;
     using System.Web.Mvc;
 
+    using AutoMapper.QueryableExtensions;
+    using PhotoDealer.Web.ViewModels.Category;
+
     public class HomeController : BaseController
     {
 
@@ -17,21 +20,8 @@
 
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var categories = this.PhotoDb.Categories.All().Project().To<CategoryViewModel>();
+            return View(categories);
         }
     }
 }

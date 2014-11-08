@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-
-namespace PhotoDealer.Web
+﻿namespace PhotoDealer.Web
 {
+    using PhotoDealer.Web.Infrastructure.Mapping;
+    using System.Reflection;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
+            var autoMapper = new AutoMapperConfig(Assembly.GetExecutingAssembly());
+            autoMapper.Execute();
             ViewEngineConfig.RegisterEngines();
 
             AreaRegistration.RegisterAllAreas();
