@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PhotoDealer.Web.Models;
+using PhotoDealer.Data.Models;
 
 namespace PhotoDealer.Web.Controllers
 {

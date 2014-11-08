@@ -1,15 +1,17 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using PhotoDealer.Web.Models;
-
-namespace PhotoDealer.Web.Controllers
+﻿namespace PhotoDealer.Web.Controllers
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
+    using PhotoDealer.Web.Models;
+    using PhotoDealer.Data.Models;
+
     [Authorize]
     public class ManageController : Controller
     {
@@ -311,7 +313,7 @@ namespace PhotoDealer.Web.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -368,6 +370,6 @@ namespace PhotoDealer.Web.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
