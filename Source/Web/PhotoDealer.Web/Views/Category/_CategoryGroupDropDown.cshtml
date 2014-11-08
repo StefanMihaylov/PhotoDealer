@@ -1,4 +1,4 @@
-﻿@model  IEnumerable<PhotoDealer.Web.ViewModels.CategoryDropDownViewModel>
+﻿@model  IEnumerable<PhotoDealer.Web.ViewModels.CategoryGroup.CategoryGroupViewModel>
 
 @{
     var dropDownItems = new List<SelectListItem>();
@@ -7,7 +7,11 @@
 
     foreach (var item in Model)
     {
-        newListItem = new SelectListItem() { Value = item.Id.ToString(), Text = item.Name };
+        newListItem = new SelectListItem()
+        {
+            Value = item.CategoryGroupId.ToString(),
+            Text = item.GroupName
+        };
         dropDownItems.Add(newListItem);
     }
 }

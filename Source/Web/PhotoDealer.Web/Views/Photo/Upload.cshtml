@@ -8,7 +8,7 @@
         new { @enctype = "multipart/form-data", id = "fileUploadForm", @class = "form form-horizontal" }))
     {
         @Html.AntiForgeryToken();
-        <input type="file" name="file" id="file" multiple/>
+        <input type="file" name="file" id="file" multiple class="form-control"/>
         <input type="submit" value="Submit" class="btn btn-primary">
     }
 </div>

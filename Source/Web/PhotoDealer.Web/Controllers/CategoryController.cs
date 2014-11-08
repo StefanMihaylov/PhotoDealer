@@ -5,6 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using AutoMapper.QueryableExtensions;
+using PhotoDealer.Web.ViewModels.CategoryGroup;
+
 namespace PhotoDealer.Web.Controllers
 {
     public class CategoryController : BaseController
@@ -19,10 +22,7 @@ namespace PhotoDealer.Web.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            var categories = this.PhotoDb.CategoryGroups.All()
-                //.Select(c => new CategoryDropDownViewModel { Id = c.CategoryGroupId, Name = c.GroupName })
-                .ToList();
-
+            var categories = this.PhotoDb.CategoryGroups.All().Project().To<CategoryGroupViewModel>();
             return View(categories);
         }
 
