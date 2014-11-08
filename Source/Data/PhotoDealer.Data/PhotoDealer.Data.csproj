@@ -52,7 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="AppDbContext.cs" />
+    <Compile Include="IAppDbContext.cs" />
+    <Compile Include="IPhotoDealerData.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="PhotoDealerData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

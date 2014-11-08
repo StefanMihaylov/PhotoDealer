@@ -268,6 +268,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\PhotoDealer.Data.Common\PhotoDealer.Data.Common.csproj">
+      <Project>{15421f7f-31f5-4be0-8dff-71fe45567f06}</Project>
+      <Name>PhotoDealer.Data.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Data\PhotoDealer.Data.Models\PhotoDealer.Data.Models.csproj">
       <Project>{6359b2dd-4f52-4f3f-bf48-6354898eddcf}</Project>
       <Name>PhotoDealer.Data.Models</Name>

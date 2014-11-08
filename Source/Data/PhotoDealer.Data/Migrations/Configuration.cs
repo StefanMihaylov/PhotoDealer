@@ -8,7 +8,7 @@ namespace PhotoDealer.Data.Migrations
 
     using PhotoDealer.Data.Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<AppDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PhotoDealer.Data.AppDbContext>
     {
         public Configuration()
         {
@@ -16,16 +16,15 @@ namespace PhotoDealer.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(AppDbContext context)
+        protected override void Seed(PhotoDealer.Data.AppDbContext context)
         {
             if (!context.CategoryGroups.Any())
             {
                 SeedCategories(context);
             }
-            
         }
- 
-                private void SeedCategories(AppDbContext context)
+
+        private void SeedCategories(AppDbContext context)
         {
             var categoryGroups = new List<CategoryGroup>();
             var categories = new List<Category>();
