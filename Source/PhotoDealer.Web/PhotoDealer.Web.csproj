@@ -313,8 +313,12 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PhotoDealer.Data\PhotoDealer.Data.csproj">
-      <Project>{3931671a-27ac-4728-b33f-6498a54a6686}</Project>
+    <ProjectReference Include="..\Data\PhotoDealer.Data.Models\PhotoDealer.Data.Models.csproj">
+      <Project>{6359b2dd-4f52-4f3f-bf48-6354898eddcf}</Project>
+      <Name>PhotoDealer.Data.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\PhotoDealer.Data\PhotoDealer.Data.csproj">
+      <Project>{dfa2a8d4-0757-4352-8816-1198db5599e1}</Project>
       <Name>PhotoDealer.Data</Name>
     </ProjectReference>
   </ItemGroup>

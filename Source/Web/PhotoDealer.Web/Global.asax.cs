@@ -12,6 +12,8 @@ namespace PhotoDealer.Web
     {
         protected void Application_Start()
         {
+            ViewEngineConfig.RegisterEngines();
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

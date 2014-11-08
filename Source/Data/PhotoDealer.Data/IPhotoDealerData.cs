@@ -5,15 +5,15 @@
 
     public interface IPhotoDealerData
     {
-        IRepository<User> Users { get; }
+        IDeletableEntityRepository<User> Users { get; }
 
-        IRepository<Picture> Pictures { get; }
+        IDeletableEntityRepository<Picture> Pictures { get; }
 
-        IRepository<CategoryGroup> CategoryGroups { get; }
+        IDeletableEntityRepository<CategoryGroup> CategoryGroups { get; }
 
-        IRepository<Category> Categories { get; }
+        IDeletableEntityRepository<Category> Categories { get; }
 
-        IRepository<Transaction> Transactions { get; }
+        IDeletableEntityRepository<Transaction> Transactions { get; }
 
         int SaveChanges();
     }

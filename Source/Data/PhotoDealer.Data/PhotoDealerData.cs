@@ -6,12 +6,13 @@
 
     using PhotoDealer.Data.Models;
     using PhotoDealer.Data.Common.Repository;
+    using PhotoDealer.Data.Common.Models;
 
     public class PhotoDealerData : IPhotoDealerData
     {
-        private IAppDbContext context;
+        private readonly IAppDbContext context;
 
-        private IDictionary<Type, object> repositories;
+        private readonly IDictionary<Type, object> repositories;
 
         public PhotoDealerData(IAppDbContext context)
         {
@@ -19,27 +20,27 @@
             this.repositories = new Dictionary<Type, object>();
         }
 
-        public IRepository<User> Users
+        public IDeletableEntityRepository<User> Users
         {
             get { return this.GetRepository<User>(); }
         }
 
-        public IRepository<Picture> Pictures
+        public IDeletableEntityRepository<Picture> Pictures
         {
             get { return this.GetRepository<Picture>(); }
         }
 
-        public IRepository<CategoryGroup> CategoryGroups
+        public IDeletableEntityRepository<CategoryGroup> CategoryGroups
         {
             get { return this.GetRepository<CategoryGroup>(); }
         }
 
-        public IRepository<Category> Categories
+        public IDeletableEntityRepository<Category> Categories
         {
             get { return this.GetRepository<Category>(); }
         }
 
-        public IRepository<Transaction> Transactions
+        public IDeletableEntityRepository<Transaction> Transactions
         {
             get { return this.GetRepository<Transaction>(); }
         }
@@ -51,16 +52,16 @@
             return this.context.SaveChanges();
         }
 
-        private IRepository<T> GetRepository<T>() where T : class
+        private IDeletableEntityRepository<T> GetRepository<T>() where T : class, IDeletableEntity
         {
             var typeOfRepository = typeof(T);
             if (!this.repositories.ContainsKey(typeOfRepository))
             {
-                var newRepository = Activator.CreateInstance(typeof(EfRepository<T>), context);
+                var newRepository = Activator.CreateInstance(typeof(DeletableEntityRepository<T>), context);
                 this.repositories.Add(typeOfRepository, newRepository);
             }
 
-            return (IRepository<T>)this.repositories[typeOfRepository];
+            return (IDeletableEntityRepository<T>)this.repositories[typeOfRepository];
         }
     }
 }

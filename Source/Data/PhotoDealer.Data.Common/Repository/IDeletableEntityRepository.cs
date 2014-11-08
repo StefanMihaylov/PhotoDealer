@@ -2,7 +2,9 @@
 {
     using System.Linq;
 
-    public interface IDeletableEntityRepository<T> : IRepository<T> where T : class
+    using PhotoDealer.Data.Common.Models;
+
+    public interface IDeletableEntityRepository<T> : IRepository<T> where T : class, IDeletableEntity
     {
         IQueryable<T> AllWithDeleted();
     }
