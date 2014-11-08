@@ -192,8 +192,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -248,8 +251,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -300,6 +301,10 @@
     <ProjectReference Include="..\..\Data\PhotoDealer.Data\PhotoDealer.Data.csproj">
       <Project>{dfa2a8d4-0757-4352-8816-1198db5599e1}</Project>
       <Name>PhotoDealer.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\PhotoDealer.Logic\PhotoDealer.Logic.csproj">
+      <Project>{7e0e5b1f-0d96-49c1-9d71-3543e584c691}</Project>
+      <Name>PhotoDealer.Logic</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

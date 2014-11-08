@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace PhotoDealer.Web.Controllers
+﻿namespace PhotoDealer.Web.Controllers
 {
-    public class HomeController : Controller
+    using PhotoDealer.Data;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
+    public class HomeController : BaseController
     {
+
+        public HomeController(IPhotoDealerData photoDb)
+            : base(photoDb)
+        {
+        }
+
         public ActionResult Index()
         {
             return View();

@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoDealer.Data.Common", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoDealer.Web", "Web\PhotoDealer.Web\PhotoDealer.Web.csproj", "{EA530DF7-7C3D-4FDF-86B7-96D3FCFE789C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoDealer.Logic", "Logic\PhotoDealer.Logic\PhotoDealer.Logic.csproj", "{7E0E5B1F-0D96-49C1-9D71-3543E584C691}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{EA530DF7-7C3D-4FDF-86B7-96D3FCFE789C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA530DF7-7C3D-4FDF-86B7-96D3FCFE789C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA530DF7-7C3D-4FDF-86B7-96D3FCFE789C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E0E5B1F-0D96-49C1-9D71-3543E584C691}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E0E5B1F-0D96-49C1-9D71-3543E584C691}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E0E5B1F-0D96-49C1-9D71-3543E584C691}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E0E5B1F-0D96-49C1-9D71-3543E584C691}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -57,5 +63,6 @@ Global
 		{DFA2A8D4-0757-4352-8816-1198DB5599E1} = {5E026469-0B2E-455A-B4EB-F6FA5E255C34}
 		{15421F7F-31F5-4BE0-8DFF-71FE45567F06} = {5E026469-0B2E-455A-B4EB-F6FA5E255C34}
 		{EA530DF7-7C3D-4FDF-86B7-96D3FCFE789C} = {D3B0CF2A-9858-42A1-93A8-959333B7FF9E}
+		{7E0E5B1F-0D96-49C1-9D71-3543E584C691} = {A487FC21-6F71-4395-924D-A2998F121CB3}
 	EndGlobalSection
 EndGlobal
