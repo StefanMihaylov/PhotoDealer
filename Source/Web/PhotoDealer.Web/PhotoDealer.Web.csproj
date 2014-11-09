@@ -208,6 +208,7 @@
     <Compile Include="Areas\Administration\Controllers\BaseController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryGroupController.cs" />
+    <Compile Include="Areas\Administration\Controllers\JsonpResult.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryGroupController.cs" />
@@ -215,6 +216,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -246,6 +248,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.slate.css" />
     <Content Include="Content\bootstrap.slate.min.css" />
+    <Content Include="Content\images\back.png" />
+    <Content Include="Content\images\kendoui.svg" />
+    <Content Include="Content\images\wp8_icons.png" />
+    <Content Include="Content\images\wp8_inverseicons.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -265,6 +271,8 @@
     <Content Include="Kendo\styles\images\kendoui.ttf" />
     <Content Include="Kendo\styles\images\kendoui.woff" />
     <Content Include="Kendo\kendo.web.min.js.map" />
+    <Content Include="Content\images\kendoui.ttf" />
+    <Content Include="Content\images\kendoui.woff" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Kendo\kendo.all.min.js" />
     <Content Include="Kendo\kendo.aspnetmvc.min.js" />
@@ -486,6 +494,7 @@
     <Content Include="Kendo\styles\Uniform\sprite_2x.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dropdownlist.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
@@ -538,9 +547,10 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CategoryGroup.cshtml" />
     <Content Include="Views\Picture\Index.cshtml" />
-    <Content Include="Views\Picture\Upload.cshtml" />
+    <Content Include="Views\Upload\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CategoryGroup.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Category.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

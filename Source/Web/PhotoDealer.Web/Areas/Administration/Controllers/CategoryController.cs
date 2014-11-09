@@ -9,6 +9,8 @@ using PhotoDealer.Data;
 using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using PhotoDealer.Data.Models;
+using System.Web.Script.Serialization;
+using PhotoDealer.Web.Infrastructure.UserProvider;
 
 
 namespace PhotoDealer.Web.Areas.Administration.Controllers
@@ -16,21 +18,21 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
     public class CategoryController : BaseController
     {
 
-        public CategoryController(IPhotoDealerData photoDb)
-            : base(photoDb)
+        public CategoryController(IPhotoDealerData photoDb, IUserIdProvider userProvider)
+            : base(photoDb, userProvider)
         {
         }
 
-        public ActionResult Read(int categoryGroupId, [DataSourceRequest] DataSourceRequest request)
+        public ActionResult Read(int categoryGroupId)
         {
             var categories = this.PhotoDb.Categories.All()
-                .Where(c=> c.CategoryGroupId == categoryGroupId)
-                .Project().To<CategoryViewModel>();
-            DataSourceResult result = categories.ToDataSourceResult(request);
-            return Json(result, JsonRequestBehavior.AllowGet);
+                .Where(c => c.CategoryGroupId == categoryGroupId)
+                .Project().To<CategoryViewModel>().ToList();
+
+            JsonpResult result = new JsonpResult(categories);
+            return result;
         }
 
-        [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Create(int categoryGroupId, [DataSourceRequest] DataSourceRequest request,
             CategoryViewModel newCategory)
         {

@@ -7,14 +7,15 @@ using System.Web.Mvc;
 using AutoMapper.QueryableExtensions;
 using PhotoDealer.Data;
 using PhotoDealer.Web.ViewModels;
+using PhotoDealer.Web.Infrastructure.UserProvider;
 
 namespace PhotoDealer.Web.Controllers
 {
     public class CategoryController : BaseController
     {
 
-        public CategoryController(IPhotoDealerData photoDb)
-            : base(photoDb)
+        public CategoryController(IPhotoDealerData photoDb, UserIdProvider userProvider)
+            : base(photoDb, userProvider)
         {
         }
 

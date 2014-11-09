@@ -9,12 +9,12 @@
 
     public class Picture : AuditInfo, IDeletableEntity
     {
-        private ICollection<string> tags;
+        private ICollection<Tag> tags;
 
         public Picture()
         {
             this.PictureId = Guid.NewGuid();
-            this.tags = new HashSet<string>();
+            this.tags = new HashSet<Tag>();
         }
 
         [Key]
@@ -22,8 +22,6 @@
 
         [Required]
         public string Title { get; set; }
-
-
 
         [Required]
         public byte[] FileContent { get; set; }
@@ -61,7 +59,7 @@
         public Category Category { get; set; }
 
 
-        public virtual ICollection<string> Tags
+        public virtual ICollection<Tag> Tags
         {
             get { return this.tags; }
             set { this.tags = value; }

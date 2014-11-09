@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tag.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="CategoryGroup.cs" />

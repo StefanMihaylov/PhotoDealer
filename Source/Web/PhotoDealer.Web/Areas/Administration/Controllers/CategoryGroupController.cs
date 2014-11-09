@@ -9,6 +9,7 @@ using PhotoDealer.Data;
 using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using PhotoDealer.Data.Models;
+using PhotoDealer.Web.Infrastructure.UserProvider;
 
 
 namespace PhotoDealer.Web.Areas.Administration.Controllers
@@ -16,8 +17,8 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
     public class CategoryGroupController : BaseController
     {
 
-        public CategoryGroupController(IPhotoDealerData photoDb)
-            : base(photoDb)
+        public CategoryGroupController(IPhotoDealerData photoDb, IUserIdProvider userProvider)
+            : base(photoDb, userProvider)
         {
         }
 

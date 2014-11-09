@@ -9,12 +9,13 @@
 
     using AutoMapper.QueryableExtensions;
     using PhotoDealer.Web.ViewModels;
+    using PhotoDealer.Web.Infrastructure.UserProvider;
 
     public class HomeController : BaseController
     {
 
-        public HomeController(IPhotoDealerData photoDb)
-            : base(photoDb)
+        public HomeController(IPhotoDealerData photoDb, IUserIdProvider userProvider)
+            : base(photoDb, userProvider)
         {
         }
 

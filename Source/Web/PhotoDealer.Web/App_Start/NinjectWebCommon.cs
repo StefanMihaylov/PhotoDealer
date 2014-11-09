@@ -12,6 +12,7 @@ namespace PhotoDealer.Web.App_Start
     using Ninject.Web.Common;
     using PhotoDealer.Data;
     using PhotoDealer.Logic;
+    using PhotoDealer.Web.Infrastructure.UserProvider;
 
     public static class NinjectWebCommon
     {
@@ -64,6 +65,7 @@ namespace PhotoDealer.Web.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<IImageProcess>().To<ImageProcess>();
+            kernel.Bind<IUserIdProvider>().To<UserIdProvider>();
 
             kernel.Bind<IAppDbContext>().To<AppDbContext>();
             kernel.Bind<IPhotoDealerData>().To<PhotoDealerData>();
