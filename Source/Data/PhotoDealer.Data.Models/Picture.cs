@@ -1,15 +1,13 @@
-﻿using PhotoDealer.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PhotoDealer.Data.Models
+﻿namespace PhotoDealer.Data.Models
 {
-    public class Picture: AuditInfo, IDeletableEntity
+    using PhotoDealer.Data.Common.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+
+    public class Picture : AuditInfo, IDeletableEntity
     {
         private ICollection<string> tags;
 
@@ -23,13 +21,18 @@ namespace PhotoDealer.Data.Models
         public Guid PictureId { get; set; }
 
         [Required]
-        public byte[] Content { get; set; }
+        public string Title { get; set; }
+
+
+
+        [Required]
+        public byte[] FileContent { get; set; }
 
         [Required]
         public string FileName { get; set; }
 
         [Required]
-        public string ContentType { get; set; }
+        public string FileContentType { get; set; }
 
         [Required]
         public int WidthPixels { get; set; }
@@ -53,9 +56,9 @@ namespace PhotoDealer.Data.Models
 
         public CategoryGroup CategoryGroup { get; set; }
 
-        public int? SubCategoryId { get; set; }
+        public int? CategoryId { get; set; }
 
-        public Category SubCategory { get; set; }
+        public Category Category { get; set; }
 
 
         public virtual ICollection<string> Tags

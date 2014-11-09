@@ -14,9 +14,34 @@ namespace PhotoDealer.Web
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "GetAllCategoryGroups",
+                url: "GetAllCategoryGroups/{id}",
+                defaults: new
+                {
+                    controller = "CategoryGroup",
+                    action = "GetAll",
+                    id = UrlParameter.Optional
+                },
+                namespaces: new[] { "PhotoDealer.Web.Controllers" }
+            );
+
+            routes.MapRoute(
+               name: "GetAllCategories",
+               url: "GetAllCategories/{id}",
+               defaults: new
+               {
+                   controller = "Category",
+                   action = "GetAll",
+                   id = UrlParameter.Optional
+               },
+               namespaces: new[] { "PhotoDealer.Web.Controllers" }
+           );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new[] { "PhotoDealer.Web.Controllers" }
             );
         }
     }

@@ -17,23 +17,26 @@
         public const int WatermarkOpacity = 40;
         public const bool WatermarkShadow = true;
 
-        public MemoryStream Resize(MemoryStream inputStream, int pictureWidth, int quality)
+        public MemoryStream Resize(byte[] fileContent, int pictureWidth, int quality)
         {
             var watermarkTextLayer = WatermarkSettings(WaterMark, FontName, pictureWidth, 95);
             MemoryStream outStream = new MemoryStream();
 
-            // Initialize the ImageFactory using the overload to preserve EXIF metadata.
-            using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
+            using (MemoryStream inputStream = new MemoryStream(fileContent))
             {
-                // Load, resize, set the format and quality and save an image.
-                imageFactory.Load(inputStream)
-                            .Resize(new Size(pictureWidth, 0))
-                            .Quality(quality)
-                            .Watermark(watermarkTextLayer)
-                            .Save(outStream);
-            }
+                // Initialize the ImageFactory using the overload to preserve EXIF metadata.
+                using (ImageFactory imageFactory = new ImageFactory(preserveExifData: true))
+                {
+                    // Load, resize, set the format and quality and save an image.
+                    imageFactory.Load(inputStream)
+                                .Resize(new Size(pictureWidth, 0))
+                                .Quality(quality)
+                                .Watermark(watermarkTextLayer)
+                                .Save(outStream);
+                }
 
-            return outStream;
+                return outStream;
+            }
         }
 
         private TextLayer WatermarkSettings(string waterMarktext, string fontName, int widthSize, int ratio)

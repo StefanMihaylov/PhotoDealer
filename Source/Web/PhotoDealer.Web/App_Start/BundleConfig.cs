@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace PhotoDealer.Web
 {
@@ -8,6 +7,8 @@ namespace PhotoDealer.Web
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.IgnoreList.Clear();
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -26,6 +27,17 @@ namespace PhotoDealer.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.slate.css",
                       "~/Content/site.css"));
+
+            // Kendo bundles
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+                        "~/Kendo/kendo.web.min.js",
+                        "~/Kendo/kendo.aspnetmvc.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo").Include(
+                        "~/Kendo/styles/kendo.common.*",
+                        "~/Kendo/styles/kendo.default.*",
+                        "~/Kendo/styles/kendo.black.*"));
+
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862

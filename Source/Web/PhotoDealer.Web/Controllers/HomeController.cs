@@ -8,7 +8,7 @@
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
-    using PhotoDealer.Web.ViewModels.Category;
+    using PhotoDealer.Web.ViewModels;
 
     public class HomeController : BaseController
     {

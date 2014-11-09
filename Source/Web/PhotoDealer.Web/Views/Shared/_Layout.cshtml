@@ -3,10 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Photo Dealer - @ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/kendo")
 
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/kendo")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,14 +20,30 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Photo Dealer", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Pictures", "index", "Photo")</li>
-                    <li>@Html.ActionLink("Upload", "Upload", "Photo")</li>
-                    <li>@Html.ActionLink("Category", "index", "Category")</li>
+                    <li>@Html.ActionLink("Pictures", "index", "Picture", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Upload", "Upload", "Picture", new { area = "" }, null)</li>
+                    <li>@Html.ActionLink("Category", "index", "Category", new { area = "" }, null)</li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                            Administration
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                @Html.ActionLink("Categories", "Index", "CategoryGroup",
+                                new { area = "Administration" }, null) @*new { data_toggle = "tab" }*@
+                             </li>
+                            <li class="divider"></li>
+                            <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
+                        </ul>
+
+                    </li>
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,12 +53,13 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; 2014 Telerik Academy</p>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/bootstrap")   
+    
+    
     @RenderSection("scripts", required: false)
 </body>
 </html>

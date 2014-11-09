@@ -4,7 +4,7 @@
 
 <h2>Upload File</h2>
 <div>
-    @using (Html.BeginForm("Upload", "Photo", FormMethod.Post,
+    @using (Html.BeginForm("Upload", "Picture", FormMethod.Post,
         new { @enctype = "multipart/form-data", id = "fileUploadForm", @class = "form form-horizontal" }))
     {
         @Html.AntiForgeryToken();

@@ -1,0 +1,27 @@
+﻿@using PhotoDealer.Data.Models
+@model  int?
+
+@* IEnumerable<CategoryGroupViewModel> *@
+@{
+    var dropDownItems = new List<SelectListItem>();
+    var newListItem = new SelectListItem() { Value = null, Text = "Any" };
+    // dropDownItems.Add(newListItem);
+
+
+
+    //foreach (var item in Model)
+    //{
+    //    newListItem = new SelectListItem()
+    //    {
+    //        Value = item.CategoryGroupId.ToString(),
+    //        Text = item.GroupName
+    //    };
+    //    dropDownItems.Add(newListItem);
+    //}
+}
+
+@*@Html.DropDownList("CategoryGroup", dropDownItems, new { @class = "form-control" })*@
+
+@Html.DropDownList("", new List<SelectListItem>(), new { @class = "form-control ddlCategoryGroup" })
+
+

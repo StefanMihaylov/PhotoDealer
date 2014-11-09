@@ -12,11 +12,14 @@
     using PhotoDealer.Data.Models;
     using PhotoDealer.Logic;
 
-    public class PhotoController : BaseController
+    using AutoMapper.QueryableExtensions;
+    using PhotoDealer.Web.ViewModels;
+
+    public class PictureController : BaseController
     {
         private readonly IImageProcess imageProcess;
 
-        public PhotoController(IPhotoDealerData photoDb, IImageProcess imageProcess)
+        public PictureController(IPhotoDealerData photoDb, IImageProcess imageProcess)
             : base(photoDb)
         {
             this.imageProcess = imageProcess;
@@ -24,6 +27,19 @@
 
         public ActionResult Index()
         {
+            var picture = this.PhotoDb.Pictures.All().Project().To<PictureViewModel>().First();
+            return View(picture);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(PictureViewModel selected)
+        {
+            if (ModelState.IsValid)
+            {
+                return View(selected);
+            }
+
             return View();
         }
 
@@ -31,12 +47,9 @@
         {
             var picture = this.PhotoDb.Pictures.All().First();
 
-            using (MemoryStream inStream = new MemoryStream(picture.Content))
-            {
-                MemoryStream outStream = this.imageProcess.Resize(inStream, 300, 60);
-                outStream.Seek(0, SeekOrigin.Begin);
-                return File(outStream, picture.ContentType);
-            }
+            MemoryStream outStream = this.imageProcess.Resize(picture.FileContent, 300, 60);
+            outStream.Seek(0, SeekOrigin.Begin);
+            return File(outStream, picture.FileContentType);
         }
 
         public ActionResult Upload()
@@ -62,8 +75,9 @@
                     var image = Image.FromStream(file.InputStream);
                     var picture = new Picture()
                     {
-                        Content = byteContent,
-                        ContentType = contentType,
+                        Title = "Title",
+                        FileContent = byteContent,
+                        FileContentType = contentType,
                         FileName = fileName,
                         WidthPixels = image.Width,
                         HeightPixels = image.Height

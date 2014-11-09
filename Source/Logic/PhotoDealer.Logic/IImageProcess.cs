@@ -4,6 +4,6 @@
 
     public interface IImageProcess
     {
-        MemoryStream Resize(MemoryStream inputStream, int pictureWidth, int quality);
+        MemoryStream Resize(byte[] fileContent, int pictureWidth, int quality);
     }
 }

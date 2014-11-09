@@ -1,0 +1,91 @@
+﻿@using PhotoDealer.Web.ViewModels
+
+@{
+    ViewBag.Title = "Edit Category Group";
+}
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <h2>Category Groups</h2>
+        @(Html.Kendo().Grid<CategoryGroupViewModel>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.GroupName).Width(140);
+            columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
+        })
+        .ToolBar(toolbar => toolbar.Create())
+        .Editable(editable => editable.Mode(GridEditMode.InLine))
+        .HtmlAttributes(new { style = "text-align: center;" })
+        .Sortable()
+        .Pageable()
+        
+        .Selectable(selectable => selectable
+        .Mode(GridSelectionMode.Multiple))
+                    
+        .Events(events => events.DataBound("dataBound"))
+        
+        .ClientDetailTemplateId("categoryGroup")
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .PageSize(10)
+                .Events(events => events.Error("error_handler"))
+                .Model(model => model.Id(p => p.CategoryGroupId))
+                .Create(update => update.Action("Create", "CategoryGroup"))
+                .Read(read => read.Action("Read", "CategoryGroup"))
+                .Update(update => update.Action("Update", "CategoryGroup"))
+                .Destroy(update => update.Action("Destroy", "CategoryGroup"))
+             )
+        )
+    </div>
+
+    <script id="categoryGroup" type="text/kendo-tmpl">
+        @(Html.Kendo().Grid<CategoryViewModel>()
+            .Name("grid_#=CategoryGroupId#")
+            .Columns(columns =>
+            {
+                columns.Bound(c => c.Name).Width(140);
+                columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
+            })
+            .Pageable()
+            .Sortable()
+            .ToolBar(toolbar => toolbar.Create())
+            .Editable(editable => editable.Mode(GridEditMode.InLine))
+            .DataSource(dataSource => dataSource
+                .Ajax()
+                .PageSize(5)
+                .Model(model =>
+                {
+                    model.Id(p => p.CategoryId);
+                })
+                .Create(update => update.Action("Create", "Category", new { CategoryGroupId = "#=CategoryGroupId#" }))
+                .Read(read => read.Action("Read", "Category", new { CategoryGroupId = "#=CategoryGroupId#" }))
+                .Update(update => update.Action("Update", "Category", new { CategoryGroupId = "#=CategoryGroupId#" }))
+                .Destroy(update => update.Action("Destroy", "Category", new { CategoryGroupId = "#=CategoryGroupId#" }))
+            )
+            .ToClientTemplate()
+
+        )
+    </script>
+    <script>
+        function dataBound() {
+            this.expandRow(this.tbody.find("tr.k-master-row").first());
+        }
+    </script>
+
+    <script type="text/javascript">
+        function error_handler(e) {
+            if (e.errors) {
+                var message = "Errors:\n";
+                $.each(e.errors, function (key, value) {
+                    if ('errors' in value) {
+                        $.each(value.errors, function () {
+                            message += this + "\n";
+                        });
+                    }
+                });
+                alert(message);
+            }
+        }
+    </script>
+</div>

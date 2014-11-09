@@ -10,27 +10,24 @@ using PhotoDealer.Web.ViewModels;
 
 namespace PhotoDealer.Web.Controllers
 {
-    public class CategoryController : BaseController
+    public class CategoryGroupController : BaseController
     {
 
-        public CategoryController(IPhotoDealerData photoDb)
+        public CategoryGroupController(IPhotoDealerData photoDb)
             : base(photoDb)
         {
         }
 
-
         // GET: Category
         public ActionResult Index()
         {
-            var categories = this.PhotoDb.Categories.All().Project().To<CategoryViewModel>();
+            var categories = this.PhotoDb.CategoryGroups.All().Project().To<CategoryGroupViewModel>();
             return View(categories);
         }
 
-        public JsonResult GetAll(int groupId)
+        public JsonResult GetAll()
         {
-            var categories = this.PhotoDb.Categories.All()
-                .Where(c => c.CategoryGroupId == groupId)
-                .Project().To<CategoryViewModel>();
+            var categories = this.PhotoDb.CategoryGroups.All().Project().To<CategoryGroupViewModel>();
             return Json(categories, JsonRequestBehavior.AllowGet);
         }
     }

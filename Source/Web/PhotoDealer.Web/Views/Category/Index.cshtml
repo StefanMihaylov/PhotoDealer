@@ -1,18 +1,18 @@
-﻿@model  IEnumerable<PhotoDealer.Web.ViewModels.CategoryGroup.CategoryGroupViewModel>
+﻿@using PhotoDealer.Web.ViewModels
+@model  PictureViewModel
 
 @using (@Html.BeginForm("Index", "Category", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     @*@Html.ValidationSummary(true)*@
 
-    @Html.Partial("_CategoryGroupDropDown", Model)
+    @Html.DisplayFor(m => m.CategoryGroupId)
 
     @*@Html.ValidationMessageFor(m => m.CategoryGroup)*@
 
     <div>
         <input type="submit" class="btn btn-primary" />
     </div>
-
 }
 
 @*@Image.Create("", "");*@
