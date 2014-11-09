@@ -1,10 +1,12 @@
 ﻿namespace PhotoDealer.Data.Models
 {
+    using PhotoDealer.Data.Common.Models;
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Tag
+    public class Tag : AuditInfo, IDeletableEntity
     {
         private ICollection<Picture> pictures;
 
@@ -26,5 +28,11 @@
             get { return this.pictures; }
             set { this.pictures = value; }
         }
+
+
+        [Index]
+        public bool IsDeleted {get; set;}
+
+        public DateTime? DeletedOn {get; set;}
     }
 }

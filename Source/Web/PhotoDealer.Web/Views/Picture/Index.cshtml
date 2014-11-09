@@ -1,5 +1,5 @@
 ﻿@using PhotoDealer.Web.ViewModels
-@model  PictureViewModel
+@model  IList<PictureViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -7,31 +7,42 @@
 }
 
 <h2>Index</h2>
-<div>
+@{
+    int numberInRow = 4;
+    int counter = 0;
+    int pictureCount = Model.Count();
 
-    @using (Html.BeginForm("Index", "Picture", FormMethod.Post,
-        new { id = "CategoryTestUploadForm", @class = "form form-horizontal" }))
+    int rows = pictureCount / numberInRow;
+    if (pictureCount % numberInRow > 0)
     {
-
-        @Html.AntiForgeryToken();
-
-        @Html.ValidationSummary()
-
-        @Html.DisplayFor(m => m.CategoryGroup)
-
-        @Html.LabelFor(m => m.CategoryGroup)
-        @Html.EditorFor(m => m.CategoryGroupId)
-        @Html.ValidationMessageFor(m => m.CategoryGroupId)
-
-        @Html.EditorFor(m => m.CategoryId)
-        @Html.ValidationMessageFor(m => m.CategoryId)
-        <img src="/Picture/GetImage" alt="Test" />
-
-        <input type="submit" name="name" value="Send" />
+        rows++;
     }
-</div>
+}
 
-@section scripts
+@for (int i = 0; i < rows; i++)
 {
-  <script src="~/Scripts/dropdownlist.js" type="text/javascript"></script>
+    if (counter % numberInRow == 0)
+    {
+        <div class="row">
+            @for (int j = 0; j < numberInRow; j++)
+            {
+                if (counter < pictureCount)
+                {
+                    <div class="col-md-3">
+                        <div>
+                            <img src="@string.Format("/Picture/GetImage?id={0}", Model[counter].PictureId)" alt="" />
+                        </div>
+                        <div>
+                            @Html.DisplayFor(m => Model[counter].Title) by @Html.DisplayFor(m => Model[counter].Author)
+                        </div>
+                        <div>
+                            @Html.DisplayFor(m => Model[counter].Price)
+                            @Html.DisplayFor(m => Model[counter].CategoryGroup) - @Html.DisplayFor(m => Model[counter].Category)
+                        </div>
+                    </div>
+                    counter++;
+                }
+            }
+        </div>
+    }
 }

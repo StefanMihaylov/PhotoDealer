@@ -45,6 +45,10 @@
             get { return this.GetRepository<Transaction>(); }
         }
 
+        public IDeletableEntityRepository<Tag> Tags
+        {
+            get { return this.GetRepository<Tag>(); }
+        }
 
         // common parts
         public int SaveChanges()

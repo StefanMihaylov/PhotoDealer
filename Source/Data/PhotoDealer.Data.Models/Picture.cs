@@ -40,6 +40,7 @@
 
         public decimal Price { get; set; }
 
+        public bool IsVisible { get; set; }
 
         public string AuthorId { get; set; }
 

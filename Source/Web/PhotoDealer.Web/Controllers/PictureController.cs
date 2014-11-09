@@ -23,8 +23,9 @@
 
         public ActionResult Index()
         {
-            var picture = this.PhotoDb.Pictures.All().Project().To<PictureViewModel>().First();
-            return View(picture);
+            var pictures = this.PhotoDb.Pictures.All().Where(p => p.IsVisible)
+                .Project().To<PictureViewModel>().ToList();
+            return View(pictures);
         }
 
         [HttpPost]
@@ -39,13 +40,22 @@
             return View();
         }
 
-        public ActionResult GetImage()
+        public ActionResult GetImage(string id)
         {
-            var picture = this.PhotoDb.Pictures.All().First();
+            var picture = this.PhotoDb.Pictures.All()
+                .Where(p => p.PictureId.ToString() == id && p.IsVisible)
+                .FirstOrDefault();
 
-            MemoryStream outStream = this.imageProcess.Resize(picture.FileContent, 300, 60);
-            outStream.Seek(0, SeekOrigin.Begin);
-            return File(outStream, picture.FileContentType);
+            if (picture == null)
+            {
+                return RedirectToAction("Index", "Home", null);
+            }
+            else
+            {
+                MemoryStream outStream = this.imageProcess.Resize(picture.FileContent, 300, 60);
+                outStream.Seek(0, SeekOrigin.Begin);
+                return File(outStream, picture.FileContentType);
+            }
         }
     }
 }

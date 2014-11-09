@@ -30,6 +30,7 @@
 
         public IDbSet<Transaction> Transactions { get; set; }
 
+        public IDbSet<Tag> Tags { get; set; }
 
         // additional code
         public override int SaveChanges()

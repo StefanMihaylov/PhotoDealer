@@ -2,6 +2,7 @@
 {
     using System;
     using System.IO;
+    using System.Linq;
     using System.Drawing;
     using System.Web;
     using System.Web.Mvc;
@@ -54,9 +55,17 @@
 
                         Price = NormalizePrice(inputData.Price),
                         Title = inputData.Title,
+                        CategoryGroupId = inputData.CategoryGroupId,
+                        CategoryId = inputData.CategoryId,
                         AuthorId = this.CurrentUserId,
-                        OwnerId = this.CurrentUserId
+                        OwnerId = this.CurrentUserId,
+
+                        IsVisible = false
                     };
+
+                    // picture.IsVisible = true;
+
+                    AddNewTags(this.PhotoDb, inputData.TagsString, picture);
 
                     this.PhotoDb.Pictures.Add(picture);
                     this.PhotoDb.SaveChanges();
@@ -71,8 +80,24 @@
                 // no file
             }
 
+            return RedirectToAction("Index", "Picture", null);
+        }
 
-            return View();
+        private void AddNewTags(IPhotoDealerData photoDealerData, string tagsString, Picture picture)
+        {
+            string[] tagTexts = tagsString.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var tagText in tagTexts)
+            {
+                var newTagtext = tagText.Trim();
+                var tag = photoDealerData.Tags.All().FirstOrDefault(t => t.Content == newTagtext);
+                if (tag == null)
+                {
+                    tag = new Tag() { Content = newTagtext };
+                    photoDealerData.Tags.Add(tag);
+                }
+
+                picture.Tags.Add(tag);
+            }
         }
 
         private bool IsPicture(string contentType)

@@ -13,6 +13,8 @@
 
         IDbSet<Transaction> Transactions { get; set; }
 
+        IDbSet<Tag> Tags { get; set; }
+
         int SaveChanges();
     }
 }

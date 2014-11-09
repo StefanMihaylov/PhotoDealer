@@ -15,6 +15,8 @@
 
         IDeletableEntityRepository<Transaction> Transactions { get; }
 
+        IDeletableEntityRepository<Tag> Tags { get; }
+
         int SaveChanges();
     }
 }
