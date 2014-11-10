@@ -12,7 +12,12 @@
     public class AppDbContext : IdentityDbContext<User>, IAppDbContext
     {
         public AppDbContext()
-            : base("PhotoDealerDb", throwIfV1Schema: false)
+            : this("PhotoDealerDb")
+        {
+        }
+
+        public AppDbContext(string connectionString)
+            : base(connectionString, throwIfV1Schema: false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppDbContext, Configuration>());
         }
@@ -22,15 +27,15 @@
             return new AppDbContext();
         }
 
-        public IDbSet<Picture> Pictures { get; set; }
+        public virtual IDbSet<Picture> Pictures { get; set; }
 
-        public IDbSet<CategoryGroup> CategoryGroups { get; set; }
+        public virtual IDbSet<CategoryGroup> CategoryGroups { get; set; }
 
-        public IDbSet<Category> Categories { get; set; }
+        public virtual IDbSet<Category> Categories { get; set; }
 
-        public IDbSet<Transaction> Transactions { get; set; }
+        public virtual IDbSet<Transaction> Transactions { get; set; }
 
-        public IDbSet<Tag> Tags { get; set; }
+        public virtual IDbSet<Tag> Tags { get; set; }
 
         // additional code
         public override int SaveChanges()

@@ -1,0 +1,4 @@
+﻿@using PhotoDealer.Data.Models
+@model ICollection<Tag>
+
+@(string.Join(", ", Model.Select(t => t.Content)))

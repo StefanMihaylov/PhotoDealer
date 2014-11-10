@@ -22,10 +22,10 @@ namespace PhotoDealer.Web
             bundles.Add(new StyleBundle("~/Content/custom").Include("~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
-                        "~/Kendo/styles/kendo.common.min.css",
                         "~/Kendo/styles/kendo.common.core.min.css",
-                        "~/Kendo/styles/kendo-bootstrap.common.min.css",
+                        "~/Kendo/styles/kendo.common.min.css",
                         "~/Kendo/styles/kendo-bootstrap.common.core.min.css",
+                        "~/Kendo/styles/kendo-bootstrap.common.min.css",
                         "~/Kendo/styles/kendo.black.min.css"));
         }
 

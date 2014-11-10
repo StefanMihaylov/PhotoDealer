@@ -1,0 +1,42 @@
+﻿@using PhotoDealer.Web.ViewModels
+@model PictureViewModel
+
+<div class="row">
+    <div class="col-md-7">
+        @Html.DisplayFor(m => m.PictureId)
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="text-center">
+                    @Html.DisplayFor(m => m.Title)
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">                    
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.Author): @Html.DisplayFor(m => m.Author)
+                    </li>
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.CreatedOn): @Html.DisplayFor(m => m.CreatedOn)
+                    </li>
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.CategoryGroup): @Html.DisplayFor(m => m.CategoryGroup)
+                    </li>
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.Category): @Html.DisplayFor(m => m.Category)
+                    </li>
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.Tags): @Html.DisplayFor(m => m.Tags)
+                    </li>
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.Downloads): @Html.DisplayFor(m => m.Downloads)
+                    </li>
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.Price): @Html.DisplayFor(m => m.Price)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

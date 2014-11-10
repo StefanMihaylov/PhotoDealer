@@ -14,7 +14,7 @@ using PhotoDealer.Web.Infrastructure.UserProvider;
 
 namespace PhotoDealer.Web.Areas.Administration.Controllers
 {
-    public class CategoryGroupController : BaseController
+    public class CategoryGroupController : AdminController
     {
 
         public CategoryGroupController(IPhotoDealerData photoDb, IUserIdProvider userProvider)

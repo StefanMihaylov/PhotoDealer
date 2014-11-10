@@ -9,33 +9,54 @@ using PhotoDealer.Data;
 using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using PhotoDealer.Data.Models;
-using System.Web.Script.Serialization;
 using PhotoDealer.Web.Infrastructure.UserProvider;
+using System.Net;
 
 
 namespace PhotoDealer.Web.Areas.Administration.Controllers
 {
-    public class CategoryController : AdminController
+    public class SubCategoryController : AdminController
     {
 
-        public CategoryController(IPhotoDealerData photoDb, IUserIdProvider userProvider)
+        public SubCategoryController(IPhotoDealerData photoDb, IUserIdProvider userProvider)
             : base(photoDb, userProvider)
         {
         }
 
-        public ActionResult Read(int categoryGroupId)
+        // GET: Administration/CategoryGroup
+        public ActionResult Index()
         {
-            var categories = this.PhotoDb.Categories.All()
-                .Where(c => c.CategoryGroupId == categoryGroupId)
-                .Project().To<CategoryViewModel>().ToList();
-
-            JsonpResult result = new JsonpResult(categories);
-            return result;
+            return View();
         }
 
-        public ActionResult Create(int categoryGroupId, [DataSourceRequest] DataSourceRequest request,
+        public ActionResult Read(int? id, [DataSourceRequest] DataSourceRequest request)
+        {
+            DataSourceResult result;
+
+            if (id == null)
+            {
+                result = new DataSourceResult();
+            }
+            else
+            {
+                var categories = this.PhotoDb.Categories.All()
+                    .Where(c => c.CategoryGroupId == id.Value)
+                    .Project().To<CategoryViewModel>();
+                result = categories.ToDataSourceResult(request);                
+            }
+
+            return Json(result);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create(int? id, [DataSourceRequest] DataSourceRequest request,
             CategoryViewModel newCategory)
         {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             if (newCategory != null && ModelState.IsValid)
             {
                 var category = this.PhotoDb.Categories.All()
@@ -44,10 +65,10 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
                 if (category == null)
                 {
                     category = new Category();
+                    category.CategoryGroupId = id.Value;
                     this.PhotoDb.Categories.Add(category);
                 }
 
-                category.CategoryGroupId = categoryGroupId;
                 category.Name = newCategory.Name;
                 this.PhotoDb.SaveChanges();
             }
@@ -56,7 +77,7 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Update(int categoryGroupId, [DataSourceRequest] DataSourceRequest request,
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request,
             CategoryViewModel newCategory)
         {
             if (newCategory != null && ModelState.IsValid)
@@ -74,12 +95,12 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Destroy(int categoryGroupId, [DataSourceRequest] DataSourceRequest request,
+        public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
             CategoryViewModel newCategory)
         {
             if (newCategory != null)
             {
-                var category = this.PhotoDb.Categories.GetById(newCategory.CategoryGroupId);
+                var category = this.PhotoDb.Categories.GetById(newCategory.CategoryId);
 
                 if (category != null)
                 {

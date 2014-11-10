@@ -42,10 +42,10 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m => m.TagsString, new { @class = "col-md-4 control-label" })
+                    @Html.LabelFor(m => m.TagString, new { @class = "col-md-4 control-label" })
                     <div class="col-md-8">
-                        @Html.EditorFor(m => m.TagsString, new { htmlAttributes = new { @class = "form-control", placeholder = "Tag1, Tag2, Tag3" } })
-                        @Html.ValidationMessageFor(m => m.TagsString)
+                        @Html.EditorFor(m => m.TagString, new { htmlAttributes = new { @class = "form-control", placeholder = "Tag1, Tag2, Tag3" } })
+                        @Html.ValidationMessageFor(m => m.TagString)
                     </div>
                 </div>
                 <div class="form-group">

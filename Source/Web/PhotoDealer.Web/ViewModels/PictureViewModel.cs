@@ -3,11 +3,14 @@
     using AutoMapper;
     using PhotoDealer.Data.Models;
     using PhotoDealer.Web.Infrastructure.Mapping;
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public class PictureViewModel : IMapFrom<Picture>, IHaveCustomMappings
+    public class PictureViewModel : BaseViewModel, IMapFrom<Picture>, IHaveCustomMappings
     {
+        [UIHint("MediumPicture")]
         public string PictureId { get; set; }
 
         [Required]
@@ -21,7 +24,6 @@
         [DisplayName("Category Group")]
         public string CategoryGroup { get; set; }
 
-
         [UIHint("Category")]
         public int? CategoryId { get; set; }
 
@@ -33,7 +35,12 @@
         public bool IsVisible { get; set; }
 
         [DisplayName("Tags")]
-        public string TagsString { get; set; }
+        public string TagString { get; set; }
+
+        public int Downloads { get; set; }
+
+        [UIHint("JoinTags")]
+        public ICollection<Tag> Tags { get; set; }
 
         public string AuthorId { get; set; }
 

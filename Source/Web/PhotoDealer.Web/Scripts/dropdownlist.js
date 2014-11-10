@@ -12,9 +12,9 @@
         success: function (data) {
             var $option = $('<option>');
             if (data.length > 0) {
-                var $defaultOption = $option.clone(true).attr("value", null).text("--Select Category Group--");
+                var $defaultOption = $option.clone(true).attr("value", 0).text("--Select Category Group--");
                 $categoryGroup.append($defaultOption);
-                $defaultOption = $option.clone(true).attr("value", null).text("--Any--");
+                $defaultOption = $option.clone(true).attr("value", 0).text("--Any--");
                 $category.append($defaultOption);
 
                 $.each(data, function (i) {
@@ -24,9 +24,9 @@
                 });
             }
             else {
-                $defaultOption = $option.clone(true).attr("value", null).text("--No Category Group--");
+                $defaultOption = $option.clone(true).attr("value", 0).text("--No Category Group--");
                 $categoryGroup.append($defaultOption);
-                $defaultOption = $option.clone(true).attr("value", null).text("--No Category--");
+                $defaultOption = $option.clone(true).attr("value", 0).text("--No Category--");
                 $category.append($defaultOption);
             }
         }
@@ -35,34 +35,37 @@
     $categoryGroup.on('change', function () {
         var $this = $(this);
         var groupId = $this.val();
-        $.ajax({
-            url: "/GetAllCategories",
-            data: { groupId: groupId },
-            dataType: "json",
-            type: "GET",
-            error: function () {
-                alert(" An error occurred: get categories");
-            },
-            success: function (data) {
-                var $option = $('<option>');
-                if (data.length > 0) {
-                    $category.find('option').remove();
-                    $defaultOption = $option.clone(true).attr("value", 0).text("--Any--");
-                    $category.append($defaultOption);
 
-                    $.each(data, function (i) {
-                        var $currentOption = $option.clone(true)
-                            .attr("value", data[i].CategoryId).text(data[i].Name);
-                        $category.append($currentOption);
-                    });
-                }
-                else {
-                    $defaultOption = $option.clone(true).attr("value", 0).text("--Any--");
-                    $category.append($defaultOption);
-                }
+        var $option = $('<option>');
+        $category.find('option').remove();
+        $defaultOption = $option.clone(true).attr("value", 0).text("--Any--");
+        $category.append($defaultOption);
 
-            }
-        });
+        if (groupId) {
+            $.ajax({
+                url: "/GetAllCategories",
+                data: { groupId: groupId },
+                dataType: "json",
+                type: "GET",
+                error: function () {
+                    alert(" An error occurred: get categories");
+                },
+                success: function (data) {                    
+                    if (data.length > 0) {
+                        $.each(data, function (i) {
+                            var $currentOption = $option.clone(true)
+                                .attr("value", data[i].CategoryId).text(data[i].Name);
+                            $category.append($currentOption);
+                        });
+                    }
+                    else {
+                        $defaultOption = $option.clone(true).attr("value", 0).text("--Any--");
+                        $category.append($defaultOption);
+                    }
+
+                }
+            });
+        }
     });
 
 });

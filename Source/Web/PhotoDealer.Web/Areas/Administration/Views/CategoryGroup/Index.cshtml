@@ -2,14 +2,16 @@
 
 @{
     ViewBag.Title = "Edit Category Group";
+    const string GroupController = "CategoryGroup";
+    const string SubController = "SubCategory";
 }
 
 <div class="row">
     <div class="col-md-6 text-center">
-        <h2>Category Groups</h2>
+        <h3>Category Groups</h3>
         @(Html.Kendo()
               .Grid<CategoryGroupViewModel>()
-              .Name("CategoryGroups")
+              .Name(GroupController)
               .Columns(columns =>
               {
                   columns.Bound(c => c.GroupName).Width(140);
@@ -26,79 +28,88 @@
                 .PageSize(10)
                 .Events(events => events.Error("error_handler"))
                 .Model(model => model.Id(p => p.CategoryGroupId))
-                .Create(update => update.Action("Create", "CategoryGroup"))
-                .Read(read => read.Action("Read", "CategoryGroup"))
-                .Update(update => update.Action("Update", "CategoryGroup"))
-                .Destroy(update => update.Action("Destroy", "CategoryGroup")))
+                .Create(update => update.Action("Create", GroupController))
+                .Read(read => read.Action("Read", GroupController))
+                .Update(update => update.Action("Update", GroupController))
+                .Destroy(update => update.Action("Destroy", GroupController)))
         )
     </div>
     <div class="col-md-6 text-center">
-        <h2>Categories</h2>
-        <div id="categories-grid"></div>
+        <h3>Categories</h3>
+        @(Html.Kendo()
+              .Grid<CategoryViewModel>()
+              .Name(SubController)
+              .Columns(columns =>
+              {
+                  columns.Bound(c => c.Name).Width(140);
+                  columns.Command(command => { command.Edit(); command.Destroy(); }).Width(100);
+              })
+              .ToolBar(toolbar => toolbar.Create())
+              .Editable(editable => editable.Mode(GridEditMode.InLine))
+              .HtmlAttributes(new { style = "text-align: center;" })
+              .Sortable()
+              .Pageable()
+              .DataSource(dataSource => dataSource
+                .Ajax()
+                .PageSize(10)
+                .Events(events => events.Error("error_handler"))
+                .Model(model => model.Id(p => p.CategoryGroupId))
+                .Create(update => update.Action("Create", SubController))
+                .Read(read => read.Action("Read", SubController))
+                .Update(update => update.Action("Update", SubController))
+                .Destroy(update => update.Action("Destroy", SubController)))
+        )
     </div>
 </div>
 
-    <script>
-        $(document).ready(function () {
-            function SelectBackupButtonClickHandler() {
-                var selectedBackup = this.dataItem(this.select());
-                var selectedId = selectedBackup.CategoryGroupId;
-                console.log(selectedId);
-
-                var crudServiceBaseUrl = "/Administration/Category",
-                    dataSource = new kendo.data.DataSource({
-                        transport: {
-                            read: { url: crudServiceBaseUrl + "/Read?CategoryGroupId=" + selectedId, dataType: "jsonp" },
-                            update: { url: crudServiceBaseUrl + "/Update?CategoryGroupId=" + selectedId, dataType: "jsonp" },
-                            destroy: { url: crudServiceBaseUrl + "/Destroy?CategoryGroupId=" + selectedId, dataType: "jsonp" },
-                            create: { url: crudServiceBaseUrl + "/Create?CategoryGroupId=" + selectedId, dataType: "jsonp" },
-                            parameterMap: function (options, operation) {
-                                if (operation !== "read" && options.models) {
-                                    return { models: kendo.stringify(options.models) };
-                                }
-                            }
-                        },
-                        batch: true,
-                        pageSize: 10,
-                        schema: {
-                            model: {
-                            id: "CategoryID",
-                            fields: {
-                                CategoryID: { editable: false, nullable: true },
-                                Name: { validation: { required: true } },
-                            }                                                                       }
-                        }
-                    });
-
-                $("#categories-grid").kendoGrid({
-                    dataSource: dataSource,
-                    pageable: true,
-                    //height: 550,
-                    toolbar: ["create"],
-                    columns: [
-                        { field: "Name", title: "Name", format: "{0}", width: "100px" },
-                        { command: ["edit", "destroy"], title: "&nbsp;", width: "140px" }
-                    ],
-                    editable: "inline"
-                });
+<script>
+    $(document).ready(function () {
+        function AddUrParams(url, methor, id) {
+            var lastIndex = url.lastIndexOf(methor);
+            var end = lastIndex + methor.length;
+            var newUrl = url.substr(0, end);
+            if (id) {
+                newUrl = newUrl + '/' + id;
             }
-        
-            $("#CategoryGroups").data("kendoGrid").bind("change", SelectBackupButtonClickHandler);
-        });
-    </script>   
-    
-    <script type="text/javascript">
-        function error_handler(e) {
-            if (e.errors) {
-                var message = "Errors:\n";
-                $.each(e.errors, function (key, value) {
-                    if ('errors' in value) {
-                        $.each(value.errors, function () {
-                            message += this + "\n";
-                        });
-                    }
-                });
-                alert(message);
-            }
+            return newUrl;
         }
-    </script>
+
+        function changeUrl(grid, id) {
+            var urlOptions = grid.dataSource.transport.options;
+            urlOptions.read.url = AddUrParams(urlOptions.read.url, 'Read', id);
+            urlOptions.create.url = AddUrParams(urlOptions.create.url, 'Create', id);
+            grid.dataSource.read();
+        }
+
+        var $masterGrid = $("@("#" + GroupController)").data("kendoGrid");
+        var $subGrid = $("@("#" + SubController)").data("kendoGrid");
+
+        $masterGrid.bind("change", function () {
+            var selectedBackup = this.dataItem(this.select()),
+                selectedId = selectedBackup.CategoryGroupId;
+
+            changeUrl($subGrid, selectedId);
+        });
+
+        // page change
+        $masterGrid.dataSource.bind("change", function () {
+            changeUrl($subGrid, undefined);
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

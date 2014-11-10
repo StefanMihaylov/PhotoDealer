@@ -1,3 +1,8 @@
 ﻿@model string
 
-<img src="@string.Format("/Picture/GetSmallImage?id={0}", Model)" alt="@string.Format("Picture-{0}",Model)" width="300" class="pictures" />
+<a href="@Url.Action("Details", "Picture", new {id = Model })">
+    <img src="@Url.Action("GetSmallImage", "Picture", new { id = Model })"         
+         alt="@string.Format("Picture-{0}", Model)" width="100%" />
+</a>
+
+

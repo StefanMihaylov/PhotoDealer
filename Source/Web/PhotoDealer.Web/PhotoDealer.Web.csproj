@@ -205,8 +205,9 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
-    <Compile Include="Areas\Administration\Controllers\BaseController.cs" />
+    <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Administration\Controllers\SubCategoryController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryGroupController.cs" />
     <Compile Include="Areas\Administration\Controllers\JsonpResult.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryGroupViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\PictureViewModel.cs" />
@@ -341,12 +343,15 @@
     <Content Include="Views\Shared\EditorTemplates\CategoryGroup.cshtml" />
     <Content Include="Views\Picture\Index.cshtml" />
     <Content Include="Views\Upload\Index.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\CategoryGroup.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Category.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
     <Content Include="Views\Picture\Details.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SmallPicture.cshtml" />
     <Content Include="Scripts\Kendo-jQuery\jquery.min.map" />
+    <Content Include="Views\Shared\DisplayTemplates\MediumPicture.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PictureViewModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SmallDate.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\JoinTags.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Models\" />

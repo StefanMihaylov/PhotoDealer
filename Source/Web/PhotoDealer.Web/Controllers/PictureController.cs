@@ -40,6 +40,19 @@
             return View();
         }
 
+        public ActionResult Details(string id)
+        {
+            var picture = this.PhotoDb.Pictures.All().Where(p => p.PictureId.ToString() == id)
+                    .Project().To<PictureViewModel>().FirstOrDefault();
+
+            if (picture == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(picture);
+        }
+
         public ActionResult GetSmallImage(string id)
         {
             int width = 300;
@@ -47,7 +60,15 @@
 
             return GetPictureContent(id, width, quallity);
         }
- 
+
+        public ActionResult GetMediumImage(string id)
+        {
+            int width = 600;
+            int quallity = 60;
+
+            return GetPictureContent(id, width, quallity);
+        }
+
         private ActionResult GetPictureContent(string id, int width, int quallity)
         {
             var picture = this.PhotoDb.Pictures.All()

@@ -5,6 +5,8 @@
 
     public interface IPhotoDealerData
     {
+        IAppDbContext Context { get; }
+
         IDeletableEntityRepository<User> Users { get; }
 
         IDeletableEntityRepository<Picture> Pictures { get; }

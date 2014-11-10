@@ -10,14 +10,20 @@
 
     public class PhotoDealerData : IPhotoDealerData
     {
-        private readonly IAppDbContext context;
+        private IAppDbContext context;
 
         private readonly IDictionary<Type, object> repositories;
 
         public PhotoDealerData(IAppDbContext context)
         {
-            this.context = context;
+            this.Context = context;
             this.repositories = new Dictionary<Type, object>();
+        }
+
+        public IAppDbContext Context
+        {
+            get { return this.context; }
+            private set { this.context = value; }
         }
 
         public IDeletableEntityRepository<User> Users

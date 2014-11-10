@@ -65,7 +65,7 @@
 
                     // picture.IsVisible = true;
 
-                    AddNewTags(this.PhotoDb, inputData.TagsString, picture);
+                    AddNewTags(this.PhotoDb, inputData.TagString, picture);
 
                     this.PhotoDb.Pictures.Add(picture);
                     this.PhotoDb.SaveChanges();
