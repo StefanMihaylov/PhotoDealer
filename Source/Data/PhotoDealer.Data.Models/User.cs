@@ -4,17 +4,22 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using PhotoDealer.Data.Common.Models;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
     public class User : IdentityUser, IAuditInfo, IDeletableEntity
     {
+        private ICollection<Picture> ownPictures;
+        private ICollection<Picture> authorPictures;
 
         public User()
         {
             // This will prevent UserManager.CreateAsync from causing exception
             this.CreatedOn = DateTime.Now;
+            this.ownPictures = new HashSet<Picture>();
+            this.authorPictures = new HashSet<Picture>();
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
@@ -39,5 +44,18 @@
         public bool PreserveCreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
+
+
+        public virtual ICollection<Picture> OwnPictures
+        {
+            get { return this.ownPictures; }
+            set { this.ownPictures = value; }
+        }
+
+        public virtual ICollection<Picture> AuthorPictures
+        {
+            get { return this.authorPictures; }
+            set { this.authorPictures = value; }
+        }
     }
 }

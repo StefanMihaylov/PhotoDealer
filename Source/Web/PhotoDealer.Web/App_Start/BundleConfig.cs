@@ -9,14 +9,35 @@ namespace PhotoDealer.Web
         {
             bundles.IgnoreList.Clear();
 
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            RegisterScriptBundles(bundles);
+            RegisterStylesBundles(bundles);
+
+            BundleTable.EnableOptimizations = false;
+        }
+
+        private static void RegisterStylesBundles(BundleCollection bundles)
+        {
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/bootstrap.slate.css"));
+
+            bundles.Add(new StyleBundle("~/Content/custom").Include("~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/kendo").Include(
+                        "~/Kendo/styles/kendo.common.min.css",
+                        "~/Kendo/styles/kendo.common.core.min.css",
+                        "~/Kendo/styles/kendo-bootstrap.common.min.css",
+                        "~/Kendo/styles/kendo-bootstrap.common.core.min.css",
+                        "~/Kendo/styles/kendo.black.min.css"));
+        }
+
+        private static void RegisterScriptBundles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/jquery")
+                // .Include("~/Scripts/jquery-{version}.js"));
+                .Include("~/Scripts/Kendo/jquery.min.js")); // Kendo JQuery
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
-            // Use the development version of Modernizr to develop with and learn from. Then, when you're
-            // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
@@ -24,24 +45,10 @@ namespace PhotoDealer.Web
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.slate.css",
-                      "~/Content/site.css"));
-
             // Kendo bundles
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
                         "~/Kendo/kendo.web.min.js",
                         "~/Kendo/kendo.aspnetmvc.min.js"));
-
-            bundles.Add(new StyleBundle("~/Content/kendo").Include(
-                        "~/Kendo/styles/kendo.common.*",
-                        "~/Kendo/styles/kendo.default.*",
-                        "~/Kendo/styles/kendo.black.*"));
-
-
-            // Set EnableOptimizations to false for debugging. For more information,
-            // visit http://go.microsoft.com/fwlink/?LinkId=301862
-            BundleTable.EnableOptimizations = true;
         }
     }
 }

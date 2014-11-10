@@ -24,7 +24,7 @@
         public ActionResult Index()
         {
             var pictures = this.PhotoDb.Pictures.All().Where(p => p.IsVisible)
-                .Project().To<PictureViewModel>().ToList();
+                .Project().To<SmallPictureViewModel>().ToList();
             return View(pictures);
         }
 
@@ -40,19 +40,27 @@
             return View();
         }
 
-        public ActionResult GetImage(string id)
+        public ActionResult GetSmallImage(string id)
+        {
+            int width = 300;
+            int quallity = 60;
+
+            return GetPictureContent(id, width, quallity);
+        }
+ 
+        private ActionResult GetPictureContent(string id, int width, int quallity)
         {
             var picture = this.PhotoDb.Pictures.All()
-                .Where(p => p.PictureId.ToString() == id && p.IsVisible)
-                .FirstOrDefault();
+                              .Where(p => p.PictureId.ToString() == id && p.IsVisible)
+                              .FirstOrDefault();
 
             if (picture == null)
             {
-                return RedirectToAction("Index", "Home", null);
+                return HttpNotFound();
             }
             else
             {
-                MemoryStream outStream = this.imageProcess.Resize(picture.FileContent, 300, 60);
+                MemoryStream outStream = this.imageProcess.Resize(picture.FileContent, width, quallity);
                 outStream.Seek(0, SeekOrigin.Begin);
                 return File(outStream, picture.FileContentType);
             }

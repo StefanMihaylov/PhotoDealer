@@ -1,5 +1,5 @@
 ﻿@using PhotoDealer.Web.ViewModels
-@model  IList<PictureViewModel>
+@model  IList<SmallPictureViewModel>
 
 @{
     ViewBag.Title = "Index";
@@ -29,16 +29,7 @@
                 if (counter < pictureCount)
                 {
                     <div class="col-md-3">
-                        <div>
-                            <img src="@string.Format("/Picture/GetImage?id={0}", Model[counter].PictureId)" alt="" />
-                        </div>
-                        <div>
-                            @Html.DisplayFor(m => Model[counter].Title) by @Html.DisplayFor(m => Model[counter].Author)
-                        </div>
-                        <div>
-                            @Html.DisplayFor(m => Model[counter].Price)
-                            @Html.DisplayFor(m => Model[counter].CategoryGroup) - @Html.DisplayFor(m => Model[counter].Category)
-                        </div>
+                        @Html.DisplayFor(m => Model[counter].PictureId)
                     </div>
                     counter++;
                 }
