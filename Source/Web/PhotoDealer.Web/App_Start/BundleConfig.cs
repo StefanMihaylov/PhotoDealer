@@ -33,7 +33,7 @@ namespace PhotoDealer.Web
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery")
                 // .Include("~/Scripts/jquery-{version}.js"));
-                .Include("~/Scripts/Kendo/jquery.min.js")); // Kendo JQuery
+                .Include("~/Scripts/Kendo-jQuery/jquery.min.js")); // Kendo JQuery
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
