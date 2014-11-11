@@ -19,11 +19,6 @@
             return base.All().Where(x => !x.IsDeleted);
         }
 
-        public IQueryable<T> AllWithDeleted()
-        {
-            return base.All();
-        }
-
         public override void Delete(T entity)
         {
             entity.DeletedOn = DateTime.Now;
@@ -31,6 +26,16 @@
 
             var entry = this.Context.Entry(entity);
             entry.State = EntityState.Modified;
+        }
+
+        public IQueryable<T> AllWithDeleted()
+        {
+            return base.All();
+        }
+
+        public void ActualDelete(T entry)
+        {
+            base.Delete(entry);
         }
     }
 }

@@ -60,6 +60,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\PhotoDealer.Common\PhotoDealer.Common.csproj">
+      <Project>{9660ed35-cd3a-4f03-98c5-315594734667}</Project>
+      <Name>PhotoDealer.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PhotoDealer.Data.Common\PhotoDealer.Data.Common.csproj">
       <Project>{15421f7f-31f5-4be0-8dff-71fe45567f06}</Project>
       <Name>PhotoDealer.Data.Common</Name>

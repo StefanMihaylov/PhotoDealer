@@ -212,7 +212,10 @@
     <Compile Include="Areas\Administration\Controllers\PictureController.cs" />
     <Compile Include="Areas\Administration\Controllers\SubCategoryController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryGroupController.cs" />
+    <Compile Include="Areas\Administration\Controllers\UserController.cs" />
     <Compile Include="Areas\Administration\ViewModels\PictureViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\RoleViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryGroupController.cs" />
@@ -279,6 +282,7 @@
     <Content Include="Kendo\styles\images\kendoui.woff" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\Picture\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\User\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Kendo\kendo.all.min.js" />
     <Content Include="Kendo\kendo.aspnetmvc.min.js" />

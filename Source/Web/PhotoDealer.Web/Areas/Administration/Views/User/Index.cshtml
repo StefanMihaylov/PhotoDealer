@@ -1,0 +1,42 @@
+﻿@using PhotoDealer.Web.Areas.Administration.ViewModels
+@model UserViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm("Update", "User", FormMethod.Post,
+    new { id = "user-update-Form", @class = "form form-horizontal" }))
+{
+    
+    @Html.HiddenFor(m => m.Id)
+    
+    @Html.DisplayFor(m => m.Username)
+    
+    @(Html.Kendo().DropDownList()
+          .Name("RoleId")
+          .HtmlAttributes(new { style = "width: 150px" })
+          .OptionLabel("Select role...")
+          .DataTextField("Name")
+          .DataValueField("Id")
+          .DataSource(source =>
+          {
+              source.Read(read =>
+              {
+                  read.Action("GetRoles", "User");
+              });
+          })
+    )
+    
+    @Html.DisplayFor(m => m.AuthorPicturesCount)
+    
+    @Html.EditorFor(m => m.Credits)
+
+
+    <div class="text-center">
+        <input type="submit" value="Send" class="btn btn-primary">
+        @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-primary" })
+    </div>
+}
+

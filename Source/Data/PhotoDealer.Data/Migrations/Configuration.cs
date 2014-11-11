@@ -4,9 +4,11 @@ namespace PhotoDealer.Data.Migrations
     using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System.Linq;
 
     using PhotoDealer.Data.Models;
+    using PhotoDealer.Common;
 
     internal sealed class Configuration : DbMigrationsConfiguration<PhotoDealer.Data.AppDbContext>
     {
@@ -16,11 +18,25 @@ namespace PhotoDealer.Data.Migrations
             this.AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(PhotoDealer.Data.AppDbContext context)
+        protected override void Seed(AppDbContext context)
         {
             if (!context.CategoryGroups.Any())
             {
                 SeedCategories(context);
+            }
+
+            if (!context.Roles.Any())
+            {
+                var roles = new List<IdentityRole>()
+                {
+                    new IdentityRole(GlobalConstants.RegularUserRoleName),
+                    new IdentityRole(GlobalConstants.TrustedUserRoleName),
+                    new IdentityRole(GlobalConstants.ModeratorRoleName),
+                    new IdentityRole(GlobalConstants.AdministratorRoleName),
+                };
+
+                context.Roles.AddOrUpdate(roles.ToArray());
+                context.SaveChanges();
             }
         }
 
@@ -735,5 +751,6 @@ namespace PhotoDealer.Data.Migrations
 
             context.SaveChanges();
         }
+
     }
 }

@@ -13,6 +13,7 @@
     using PhotoDealer.Logic;
     using System.IO;
     using System.Net;
+    using System.Web.Routing;
 
     public class PictureController : AdminController
     {
