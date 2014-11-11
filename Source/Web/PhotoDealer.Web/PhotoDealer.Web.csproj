@@ -206,10 +206,13 @@
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Administration\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Administration\Controllers\CategoryController.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Areas\Administration\Controllers\PictureController.cs" />
     <Compile Include="Areas\Administration\Controllers\SubCategoryController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryGroupController.cs" />
-    <Compile Include="Areas\Administration\Controllers\JsonpResult.cs" />
+    <Compile Include="Areas\Administration\ViewModels\PictureViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryGroupController.cs" />
@@ -275,6 +278,7 @@
     <Content Include="Kendo\styles\images\kendoui.ttf" />
     <Content Include="Kendo\styles\images\kendoui.woff" />
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administration\Views\Picture\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Kendo\kendo.all.min.js" />
     <Content Include="Kendo\kendo.aspnetmvc.min.js" />
@@ -293,6 +297,8 @@
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -346,16 +352,15 @@
     <Content Include="Views\Shared\EditorTemplates\Category.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Decimal.cshtml" />
     <Content Include="Views\Picture\Details.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\SmallPicture.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\AdminSmallPicture.cshtml" />
     <Content Include="Scripts\Kendo-jQuery\jquery.min.map" />
     <Content Include="Views\Shared\DisplayTemplates\MediumPicture.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PictureViewModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SmallDate.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\JoinTags.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SmallPicture.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Administration\Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

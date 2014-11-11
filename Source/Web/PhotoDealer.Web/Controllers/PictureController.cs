@@ -23,7 +23,7 @@
 
         public ActionResult Index()
         {
-            var pictures = this.PhotoDb.Pictures.All().Where(p => p.IsVisible)
+            var pictures = this.PhotoDb.Pictures.All().Where(p => p.IsVisible == true && p.IsPrivate == false)
                 .Project().To<SmallPictureViewModel>().ToList();
             return View(pictures);
         }

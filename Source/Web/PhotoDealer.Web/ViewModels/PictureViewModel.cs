@@ -19,15 +19,18 @@
 
         [Required]
         [UIHint("CategoryGroup")]
-        public int? CategoryGroupId { get; set; }
+        public int CategoryGroupId { get; set; }
 
         [DisplayName("Category Group")]
         public string CategoryGroup { get; set; }
+
 
         [UIHint("Category")]
         public int? CategoryId { get; set; }
 
         public string Category { get; set; }
+
+        public int Downloads { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:n2}", ApplyFormatInEditMode = true)]
         public decimal Price { get; set; }
@@ -37,10 +40,9 @@
         [DisplayName("Tags")]
         public string TagString { get; set; }
 
-        public int Downloads { get; set; }
-
         [UIHint("JoinTags")]
         public ICollection<Tag> Tags { get; set; }
+
 
         public string AuthorId { get; set; }
 

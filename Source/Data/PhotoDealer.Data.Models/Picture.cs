@@ -23,6 +23,7 @@
         [Required]
         public string Title { get; set; }
 
+
         [Required]
         public byte[] FileContent { get; set; }
 
@@ -38,23 +39,28 @@
         [Required]
         public int HeightPixels { get; set; }
 
-        public decimal Price { get; set; }
 
-        public bool IsVisible { get; set; }
+        public decimal Price { get; set; }
 
         public int Downloads { get; set; }
 
+        public bool IsVisible { get; set; }
 
+        public bool IsPrivate { get; set; }
+
+        [ForeignKey("Author")]
         public string AuthorId { get; set; }
 
         public virtual User Author { get; set; }
 
+         [ForeignKey("Owner")]
         public string OwnerId { get; set; }
 
         public virtual User Owner { get; set; }
 
 
-        public int? CategoryGroupId { get; set; }
+        [Required]
+        public int CategoryGroupId { get; set; }
 
         public CategoryGroup CategoryGroup { get; set; }
 

@@ -17,7 +17,7 @@
         public const int WatermarkOpacity = 40;
         public const bool WatermarkShadow = true;
 
-        public MemoryStream Resize(byte[] fileContent, int pictureWidth, int quality)
+        public MemoryStream Resize(byte[] fileContent, int pictureWidth, int quality, bool watermark = true)
         {
             var watermarkTextLayer = WatermarkSettings(WaterMark, FontName, pictureWidth, 95);
             MemoryStream outStream = new MemoryStream();
@@ -30,9 +30,14 @@
                     // Load, resize, set the format and quality and save an image.
                     imageFactory.Load(inputStream)
                                 .Resize(new Size(pictureWidth, 0))
-                                .Quality(quality)
-                                .Watermark(watermarkTextLayer)
-                                .Save(outStream);
+                                .Quality(quality);
+
+                    if (watermark)
+                    {
+                        imageFactory.Watermark(watermarkTextLayer);
+                    }
+
+                    imageFactory.Save(outStream);
                 }
 
                 return outStream;

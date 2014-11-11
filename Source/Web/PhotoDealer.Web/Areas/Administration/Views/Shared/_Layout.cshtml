@@ -10,6 +10,7 @@
 @RenderBody()
 
 @section scripts{
+    @Scripts.Render("~/bundles/unobtrusive-jquery")
     @Scripts.Render("~/bundles/kendo")
     @RenderSection("scripts", required: false)
 }

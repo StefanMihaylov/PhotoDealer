@@ -4,6 +4,6 @@
 
     public interface IImageProcess
     {
-        MemoryStream Resize(byte[] fileContent, int pictureWidth, int quality);
+        MemoryStream Resize(byte[] fileContent, int pictureWidth, int quality, bool watermark = true);
     }
 }

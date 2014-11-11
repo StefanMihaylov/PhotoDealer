@@ -37,9 +37,12 @@
                             <li>
                                 @Html.ActionLink("Categories", "Index", "CategoryGroup",
                                 new { area = "Administration" }, null) @*new { data_toggle = "tab" }*@
-                             </li>
+                            </li>
                             <li class="divider"></li>
-                            <li><a href="#dropdown2" data-toggle="tab">Another action</a></li>
+                            <li>
+                                @Html.ActionLink("Approve Pictures", "Index", "Picture",
+                                new { area = "Administration" }, null)
+                            </li>
                         </ul>
 
                     </li>

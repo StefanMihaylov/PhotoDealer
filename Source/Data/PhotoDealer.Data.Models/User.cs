@@ -30,6 +30,21 @@
             return userIdentity;
         }
 
+        public decimal Credits { get; set; }
+
+        public virtual ICollection<Picture> OwnPictures
+        {
+            get { return this.ownPictures; }
+            set { this.ownPictures = value; }
+        }
+
+        public virtual ICollection<Picture> AuthorPictures
+        {
+            get { return this.authorPictures; }
+            set { this.authorPictures = value; }
+        }
+
+
         [Index]
         public bool IsDeleted { get; set; }
 
@@ -44,18 +59,5 @@
         public bool PreserveCreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }
-
-
-        public virtual ICollection<Picture> OwnPictures
-        {
-            get { return this.ownPictures; }
-            set { this.ownPictures = value; }
-        }
-
-        public virtual ICollection<Picture> AuthorPictures
-        {
-            get { return this.authorPictures; }
-            set { this.authorPictures = value; }
-        }
     }
 }
