@@ -11,7 +11,7 @@
 
         IDbSet<Category> Categories { get; set; }
 
-        IDbSet<CreditTransaction> Transactions { get; set; }
+        IDbSet<CreditTransaction> CreditTransactions { get; set; }
 
         IDbSet<Tag> Tags { get; set; }
 

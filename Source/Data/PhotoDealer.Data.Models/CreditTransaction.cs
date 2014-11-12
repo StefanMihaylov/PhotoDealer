@@ -1,6 +1,7 @@
 ﻿using PhotoDealer.Data.Common.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -12,16 +13,17 @@ namespace PhotoDealer.Data.Models
     {
         public CreditTransaction()
         {
-            this.TransactionId = Guid.NewGuid();
+            this.CreditTransactionId = Guid.NewGuid();
         }
 
-        public Guid TransactionId { get; set; }
+        [Key]
+        public Guid CreditTransactionId { get; set; }
 
         public decimal Amount { get; set; }
 
         public string PictureId { get; set; }
 
-        public Picture Picture { get; set; }
+        public virtual Picture Picture { get; set; }
 
 
         public string SellerId { get; set; }

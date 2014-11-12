@@ -46,7 +46,7 @@
             get { return this.GetRepository<Category>(); }
         }
 
-        public IDeletableEntityRepository<CreditTransaction> Transactions
+        public IDeletableEntityRepository<CreditTransaction> CreditTransactions
         {
             get { return this.GetRepository<CreditTransaction>(); }
         }

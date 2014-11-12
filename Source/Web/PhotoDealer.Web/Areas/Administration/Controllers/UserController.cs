@@ -53,7 +53,7 @@
 
                 if (user != null)
                 {
-                    if (user.Roles.Count == 0 || c != user.Id)
+                    if (user.Roles.Count == 0 || this.CurrentUserId != user.Id)
                     {
                         if (user.Roles.Count > 0)
                         {
@@ -77,11 +77,11 @@
                         {
                             Amount = newUser.Credits - user.Credits,
                             BuyerId = this.CurrentUserId,
-                            SellerId = user.Id,
+                            SellerId =  user.Id,
                             PictureId = null
                         };
 
-                        this.PhotoDb.Transactions.Add(transaction);
+                        this.PhotoDb.CreditTransactions.Add(transaction);
                         user.Credits = newUser.Credits;
                     }
 
