@@ -15,11 +15,10 @@
         columns.Bound(c => c.Username).Width(100);
         columns.Bound(c => c.CreatedOn).Width(100);
         columns.Bound(c => c.AuthorPicturesCount).Width(50);
-        columns.Bound(c => c.RoleId).Width(100);
-            //.ClientTemplate("# if (true) { #" + Html.Action("GetRoleName", "Roles", 
-            //new { area = "Administration", id= "#= RoleId #" }) + "# } #"  );
+        columns.Bound(c => c.RoleId).Width(100)
+            .ClientTemplate( Html.Action("GetRoleName", "Roles", new { area = "Administration", id = "#=RoleId#" }).ToHtmlString() );
         columns.Bound(c => c.Credits).Width(100);
-        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(150);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(200);
     })
     .Editable(editable => editable.Mode(GridEditMode.InLine))
     .HtmlAttributes(new { style = "text-align: center;" })

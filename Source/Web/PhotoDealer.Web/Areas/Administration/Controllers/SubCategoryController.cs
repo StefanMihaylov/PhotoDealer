@@ -29,6 +29,7 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
             return View();
         }
 
+        //[OutputCache(Duration = 15 * 60, VaryByParam = "id")]
         public ActionResult Read(int? id, [DataSourceRequest] DataSourceRequest request)
         {
             DataSourceResult result;

@@ -11,14 +11,14 @@
 
     public class User : IdentityUser, IAuditInfo, IDeletableEntity
     {
-        private ICollection<Picture> ownPictures;
+        private ICollection<Picture> ownerPictures;
         private ICollection<Picture> authorPictures;
 
         public User()
         {
             // This will prevent UserManager.CreateAsync from causing exception
             this.CreatedOn = DateTime.Now;
-            this.ownPictures = new HashSet<Picture>();
+            this.ownerPictures = new HashSet<Picture>();
             this.authorPictures = new HashSet<Picture>();
         }
 
@@ -32,12 +32,14 @@
 
         public decimal Credits { get; set; }
 
-        public virtual ICollection<Picture> OwnPictures
+        [InverseProperty("Author")]
+        public virtual ICollection<Picture> OwnerPictures
         {
-            get { return this.ownPictures; }
-            set { this.ownPictures = value; }
+            get { return this.ownerPictures; }
+            set { this.ownerPictures = value; }
         }
 
+        [InverseProperty("Owner")]
         public virtual ICollection<Picture> AuthorPictures
         {
             get { return this.authorPictures; }

@@ -12,6 +12,7 @@
     using PhotoDealer.Logic;
     using PhotoDealer.Web.Infrastructure.UserProvider;
     using PhotoDealer.Web.ViewModels;
+    using PhotoDealer.Common;
 
     [Authorize]
     public class UploadController : BaseController
@@ -58,18 +59,31 @@
                         CategoryGroupId = inputData.CategoryGroupId,
                         CategoryId = inputData.CategoryId,
                         AuthorId = this.CurrentUserId,
-                        OwnerId = this.CurrentUserId,
-
+                        OwnerId = this.CurrentUserId,                        
                         IsVisible = false
                     };
 
-                    // picture.IsVisible = true;
+                    if(User.IsInRole(GlobalConstants.TrustedUserRoleName) || 
+                        User.IsInRole(GlobalConstants.ModeratorRoleName) ||
+                        User.IsInRole(GlobalConstants.AdministratorRoleName))
+                    {
+                        picture.IsVisible = true;
+                    }
+
                     if (inputData.TagString != null)
                     {
                         AddNewTags(this.PhotoDb, inputData.TagString, picture);
                     }
 
                     this.PhotoDb.Pictures.Add(picture);
+
+                    //var user = this.PhotoDb.Users.GetById(this.CurrentUserId);
+                    //if (user != null)
+                    //{
+                    //    user.AuthorPictures.Add(picture);
+                    //    user.OwnerPictures.Add(picture);
+                    //}
+                    
                     this.PhotoDb.SaveChanges();
                 }
                 else

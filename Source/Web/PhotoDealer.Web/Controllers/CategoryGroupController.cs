@@ -26,6 +26,7 @@ namespace PhotoDealer.Web.Controllers
             return View(categories);
         }
 
+        [OutputCache(Duration = 15 * 60)]
         public JsonResult GetAll()
         {
             var categories = this.PhotoDb.CategoryGroups.All().Project().To<CategoryGroupViewModel>();

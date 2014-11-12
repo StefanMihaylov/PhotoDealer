@@ -206,16 +206,15 @@
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
-    <Compile Include="Areas\Administration\Controllers\CategoryController.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
     <Compile Include="Areas\Administration\Controllers\PictureController.cs" />
     <Compile Include="Areas\Administration\Controllers\RolesController.cs" />
     <Compile Include="Areas\Administration\Controllers\SubCategoryController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryGroupController.cs" />
+    <Compile Include="Areas\Administration\Controllers\TransactionsController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserController.cs" />
     <Compile Include="Areas\Administration\ViewModels\PictureViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\RoleViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\TransactionViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -287,6 +286,7 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Decimal.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\RolesDropDown.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\Decimal.cshtml" />
+    <Content Include="Areas\Administration\Views\Transactions\Index.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Kendo\kendo.all.min.js" />
     <Content Include="Kendo\kendo.aspnetmvc.min.js" />

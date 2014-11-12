@@ -21,7 +21,7 @@ namespace PhotoDealer.Data.Models
 
         public decimal Amount { get; set; }
 
-        public string PictureId { get; set; }
+        public Guid? PictureId { get; set; }
 
         public virtual Picture Picture { get; set; }
 

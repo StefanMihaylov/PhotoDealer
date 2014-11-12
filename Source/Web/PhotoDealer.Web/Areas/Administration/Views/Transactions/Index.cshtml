@@ -1,0 +1,59 @@
+﻿@using PhotoDealer.Web.Areas.Administration.ViewModels
+
+@{
+    ViewBag.Title = "Index";
+    const string ControllerName = "Transactions";
+}
+
+<h2>Index</h2>
+
+@(Html.Kendo()
+    .Grid<TransactionViewModel>
+    ()
+    .Name(ControllerName)
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.CreatedOn).Width(100);
+        columns.Bound(c => c.Buyer).Width(100);
+        columns.Bound(c => c.Seller).Width(50);
+        columns.Bound(c => c.Amount).Width(100);
+        columns.Bound(c => c.PictureId).Width(100).ClientTemplate(
+            "#if(PictureId != null) {#" +
+            @Html.ActionLink("Link", "Details", "Picture", new { id = "#=PictureId#", area = string.Empty }, null).ToString() +
+               "#} else {#" +
+               " " +
+               "# } #"
+            );
+    })
+    .HtmlAttributes(new { style = "text-align: center;" })
+    .Sortable()
+    .Filterable()
+    .Groupable()
+    .Pageable()
+    .DataSource(dataSource => dataSource
+    .Ajax()
+    .PageSize(10)
+    .Events(events => events.Error("error_handler"))
+    .Model(model =>
+    {
+        model.Id(p => p.Id);
+    })
+    .Read(read => read.Action("Read", ControllerName))
+    )
+)
+
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>

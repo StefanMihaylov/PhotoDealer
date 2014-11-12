@@ -50,10 +50,10 @@
 
         [ForeignKey("Author")]
         public string AuthorId { get; set; }
-
+        
         public virtual User Author { get; set; }
 
-         [ForeignKey("Owner")]
+        [ForeignKey("Owner")]
         public string OwnerId { get; set; }
 
         public virtual User Owner { get; set; }

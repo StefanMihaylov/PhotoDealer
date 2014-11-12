@@ -28,6 +28,7 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
             return View();
         }
 
+        //[OutputCache(Duration = 15 * 60)]
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             var categoryGroups = this.PhotoDb.CategoryGroups.All()
