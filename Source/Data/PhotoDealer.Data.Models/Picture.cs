@@ -1,11 +1,11 @@
 ﻿namespace PhotoDealer.Data.Models
-{
-    using PhotoDealer.Data.Common.Models;
+{    
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
+
+    using PhotoDealer.Data.Common.Models;
 
     public class Picture : AuditInfo, IDeletableEntity
     {
@@ -23,7 +23,6 @@
         [Required]
         public string Title { get; set; }
 
-
         [Required]
         public byte[] FileContent { get; set; }
 
@@ -38,7 +37,6 @@
 
         [Required]
         public int HeightPixels { get; set; }
-
 
         public decimal Price { get; set; }
 
@@ -58,7 +56,6 @@
 
         public virtual User Owner { get; set; }
 
-
         [Required]
         public int CategoryGroupId { get; set; }
 
@@ -67,7 +64,6 @@
         public int? CategoryId { get; set; }
 
         public Category Category { get; set; }
-
 
         public virtual ICollection<Tag> Tags
         {

@@ -2,12 +2,12 @@
 {
     using System.Web.Mvc;
 
+    using PhotoDealer.Common;
     using PhotoDealer.Data;
     using PhotoDealer.Web.Controllers;
     using PhotoDealer.Web.Infrastructure.UserProvider;
-    using PhotoDealer.Common;
 
-    //[Authorize]
+    // [Authorize]
     [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public abstract class AdminController : BaseController
     {

@@ -4,15 +4,15 @@
     using System.Collections.Generic;
     using System.Data.Entity;
 
-    using PhotoDealer.Data.Models;
-    using PhotoDealer.Data.Common.Repository;
     using PhotoDealer.Data.Common.Models;
+    using PhotoDealer.Data.Common.Repository;
+    using PhotoDealer.Data.Models;
 
     public class PhotoDealerData : IPhotoDealerData
     {
-        private IAppDbContext context;
-
         private readonly IDictionary<Type, object> repositories;
+
+        private IAppDbContext context;
 
         public PhotoDealerData(IAppDbContext context)
         {
@@ -67,7 +67,7 @@
             var typeOfRepository = typeof(T);
             if (!this.repositories.ContainsKey(typeOfRepository))
             {
-                var newRepository = Activator.CreateInstance(typeof(DeletableEntityRepository<T>), context);
+                var newRepository = Activator.CreateInstance(typeof(DeletableEntityRepository<T>), this.context);
                 this.repositories.Add(typeOfRepository, newRepository);
             }
 

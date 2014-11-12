@@ -1,7 +1,7 @@
 ﻿namespace PhotoDealer.Data
 {
-    using PhotoDealer.Data.Models;
     using System.Data.Entity;
+    using PhotoDealer.Data.Models;
 
     public interface IAppDbContext
     {

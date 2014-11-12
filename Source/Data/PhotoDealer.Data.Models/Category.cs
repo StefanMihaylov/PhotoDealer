@@ -1,14 +1,13 @@
-﻿using PhotoDealer.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-
-namespace PhotoDealer.Data.Models
+﻿namespace PhotoDealer.Data.Models
 {
-    public class Category: AuditInfo, IDeletableEntity
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using PhotoDealer.Data.Common.Models;
+
+    public class Category : AuditInfo, IDeletableEntity
     {
         private ICollection<Picture> pictures;
 
@@ -36,8 +35,8 @@ namespace PhotoDealer.Data.Models
         }
 
         [Index]
-        public bool IsDeleted {get; set;}
+        public bool IsDeleted { get; set; }
 
-        public DateTime? DeletedOn {get; set;}
+        public DateTime? DeletedOn { get; set; }
     }
 }

@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using PhotoDealer.Web.ViewModels;
-using PhotoDealer.Data;
-using Kendo.Mvc.UI;
-using Kendo.Mvc.Extensions;
-using PhotoDealer.Data.Models;
-using PhotoDealer.Web.Infrastructure.UserProvider;
-
-
-namespace PhotoDealer.Web.Areas.Administration.Controllers
+﻿namespace PhotoDealer.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+    using AutoMapper.QueryableExtensions;
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+    using PhotoDealer.Data;
+    using PhotoDealer.Data.Models;
+    using PhotoDealer.Web.Infrastructure.UserProvider;
+    using PhotoDealer.Web.ViewModels;
+
     public class CategoryGroupController : AdminController
     {
-
         public CategoryGroupController(IPhotoDealerData photoDb, IUserIdProvider userProvider)
             : base(photoDb, userProvider)
         {
@@ -25,23 +20,22 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
         // GET: Administration/CategoryGroup
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
-        //[OutputCache(Duration = 15 * 60)]
+        // [OutputCache(Duration = 15 * 60)]
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             var categoryGroups = this.PhotoDb.CategoryGroups.All()
                 .Project().To<CategoryGroupViewModel>();
             DataSourceResult result = categoryGroups.ToDataSourceResult(request);
-            return Json(result);
+            return this.Json(result);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create([DataSourceRequest] DataSourceRequest request,
-            CategoryGroupViewModel newCategoryGroup)
+        public ActionResult Create([DataSourceRequest] DataSourceRequest request, CategoryGroupViewModel newCategoryGroup)
         {
-            if (newCategoryGroup != null && ModelState.IsValid)
+            if (newCategoryGroup != null && this.ModelState.IsValid)
             {
                 var categoryGroup = this.PhotoDb.CategoryGroups.All()
                     .Where(c => c.GroupName == newCategoryGroup.GroupName).FirstOrDefault();
@@ -56,14 +50,13 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
                 this.PhotoDb.SaveChanges();
             }
 
-            return Json(new[] { newCategoryGroup }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { newCategoryGroup }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Update([DataSourceRequest] DataSourceRequest request,
-            CategoryGroupViewModel newCategoryGroup)
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, CategoryGroupViewModel newCategoryGroup)
         {
-            if (newCategoryGroup != null && ModelState.IsValid)
+            if (newCategoryGroup != null && this.ModelState.IsValid)
             {
                 var categoryGroup = this.PhotoDb.CategoryGroups.GetById(newCategoryGroup.CategoryGroupId);
 
@@ -74,12 +67,11 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
                 }
             }
 
-            return Json(new[] { newCategoryGroup }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { newCategoryGroup }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
-            CategoryGroupViewModel newCategoryGroup)
+        public ActionResult Destroy([DataSourceRequest] DataSourceRequest request, CategoryGroupViewModel newCategoryGroup)
         {
             if (newCategoryGroup != null)
             {
@@ -92,7 +84,7 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
                 }
             }
 
-            return Json(new[] { newCategoryGroup }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { newCategoryGroup }.ToDataSourceResult(request, this.ModelState));
         }
     }
 }

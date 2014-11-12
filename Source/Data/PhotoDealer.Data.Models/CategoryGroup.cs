@@ -1,11 +1,12 @@
-﻿using PhotoDealer.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace PhotoDealer.Data.Models
+﻿namespace PhotoDealer.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using PhotoDealer.Data.Common.Models;
+
     public class CategoryGroup : AuditInfo, IDeletableEntity
     {
         private ICollection<Category> categories;

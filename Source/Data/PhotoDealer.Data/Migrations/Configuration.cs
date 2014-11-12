@@ -2,13 +2,13 @@ namespace PhotoDealer.Data.Migrations
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System.Linq;
 
-    using PhotoDealer.Data.Models;
+    using Microsoft.AspNet.Identity.EntityFramework;   
+
     using PhotoDealer.Common;
+    using PhotoDealer.Data.Models;    
 
     internal sealed class Configuration : DbMigrationsConfiguration<PhotoDealer.Data.AppDbContext>
     {
@@ -22,7 +22,7 @@ namespace PhotoDealer.Data.Migrations
         {
             if (!context.CategoryGroups.Any())
             {
-                SeedCategories(context);
+                this.SeedCategories(context);
             }
 
             if (!context.Roles.Any())
@@ -751,6 +751,5 @@ namespace PhotoDealer.Data.Migrations
 
             context.SaveChanges();
         }
-
     }
 }

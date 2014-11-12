@@ -12,14 +12,13 @@
     {
         public const string FontName = "Freestyle Script";
         public const string WaterMark = "PhotoDealer";
-        public Color FontColor = Color.Black;
         public const FontStyle Style = FontStyle.Regular;
         public const int WatermarkOpacity = 40;
         public const bool WatermarkShadow = true;
 
         public MemoryStream Resize(byte[] fileContent, int pictureWidth, int quality, bool watermark = true)
         {
-            var watermarkTextLayer = WatermarkSettings(WaterMark, FontName, pictureWidth, 95);
+            var watermarkTextLayer = this.WatermarkSettings(WaterMark, FontName, pictureWidth, 95);
             MemoryStream outStream = new MemoryStream();
 
             using (MemoryStream inputStream = new MemoryStream(fileContent))
@@ -55,14 +54,14 @@
             var watermarkTextLayer = new TextLayer()
             {
                 Text = waterMarktext,
-                FontColor = FontColor,
+                FontColor = Color.Black,
                 FontFamily = fontFamily,
                 Style = Style,
                 Opacity = WatermarkOpacity,
                 DropShadow = WatermarkShadow
             };
 
-            watermarkTextLayer.FontSize = CalculateFontSize(watermarkTextLayer, widthSize, ratio);
+            watermarkTextLayer.FontSize = this.CalculateFontSize(watermarkTextLayer, widthSize, ratio);
             return watermarkTextLayer;
         }
 
@@ -77,7 +76,7 @@
             while (maxSize >= minSize)
             {
                 // calculate the midpoint for roughly equal partition
-                int sizeMid = minSize + (maxSize - minSize) / 2;
+                int sizeMid = minSize + ((maxSize - minSize) / 2);
 
                 var font = new Font(watermark.FontFamily.Name, sizeMid, watermark.Style, GraphicsUnit.Point);
                 var sizeF = graphics.MeasureString(watermark.Text, font);
@@ -88,8 +87,7 @@
                     // key found at index imid
                     return sizeMid;
                 }
-                // determine which subarray to search
-                else if (newSize < key)
+                else if (newSize < key) 
                 {
                     // change min index to search upper subarray
                     minSize = sizeMid + 1;
@@ -99,10 +97,9 @@
                     // change max index to search lower subarray
                     maxSize = sizeMid - 1;
                 }
-
             }
-            // key was not found
 
+            // key was not found
             return minSize;
         }
     }

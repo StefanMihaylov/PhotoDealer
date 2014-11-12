@@ -1,14 +1,11 @@
-﻿using PhotoDealer.Data.Common.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PhotoDealer.Data.Models
+﻿namespace PhotoDealer.Data.Models
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    using PhotoDealer.Data.Common.Models;
+
     public class CreditTransaction : AuditInfo, IDeletableEntity
     {
         public CreditTransaction()
@@ -25,7 +22,6 @@ namespace PhotoDealer.Data.Models
 
         public virtual Picture Picture { get; set; }
 
-
         public string SellerId { get; set; }
 
         public virtual User Seller { get; set; }
@@ -33,7 +29,6 @@ namespace PhotoDealer.Data.Models
         public string BuyerId { get; set; }
 
         public virtual User Buyer { get; set; }
-
 
         [Index]
         public bool IsDeleted { get; set; }

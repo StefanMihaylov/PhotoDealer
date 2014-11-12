@@ -1,13 +1,13 @@
 ﻿namespace PhotoDealer.Data
 {
-    using Microsoft.AspNet.Identity.EntityFramework;
+    using System;
     using System.Data.Entity;
     using System.Linq;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
-    using PhotoDealer.Data.Models;
-    using PhotoDealer.Data.Migrations;
     using PhotoDealer.Data.Common.Models;
-    using System;
+    using PhotoDealer.Data.Migrations;
+    using PhotoDealer.Data.Models;
 
     public class AppDbContext : IdentityDbContext<User>, IAppDbContext
     {
@@ -22,11 +22,6 @@
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<AppDbContext, Configuration>());
         }
 
-        public static AppDbContext Create()
-        {
-            return new AppDbContext();
-        }
-
         public virtual IDbSet<Picture> Pictures { get; set; }
 
         public virtual IDbSet<CategoryGroup> CategoryGroups { get; set; }
@@ -36,6 +31,11 @@
         public virtual IDbSet<CreditTransaction> CreditTransactions { get; set; }
 
         public virtual IDbSet<Tag> Tags { get; set; }
+
+        public static AppDbContext Create()
+        {
+            return new AppDbContext();
+        }
 
         // additional code
         public override int SaveChanges()

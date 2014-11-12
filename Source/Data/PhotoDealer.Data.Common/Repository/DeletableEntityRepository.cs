@@ -1,10 +1,10 @@
 ﻿namespace PhotoDealer.Data.Common.Repository
 {
+    using System;
     using System.Data.Entity;
     using System.Linq;
 
     using PhotoDealer.Data.Common.Models;
-    using System;
 
     public class DeletableEntityRepository<T> : EfRepository<T>, IDeletableEntityRepository<T>
         where T : class, IDeletableEntity

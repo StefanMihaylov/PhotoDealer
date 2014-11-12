@@ -1,7 +1,7 @@
-﻿using System.Web.Optimization;
-
-namespace PhotoDealer.Web
+﻿namespace PhotoDealer.Web
 {
+    using System.Web.Optimization;
+
     public class BundleConfig
     {
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
@@ -31,8 +31,7 @@ namespace PhotoDealer.Web
 
         private static void RegisterScriptBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery")
-                 //.Include("~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery") // .Include("~/Scripts/jquery-{version}.js"));   
                  .Include("~/Scripts/Kendo-jQuery/jquery.min.js")); // Kendo JQuery
 
             bundles.Add(new ScriptBundle("~/bundles/unobtrusive-jquery")

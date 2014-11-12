@@ -1,25 +1,24 @@
-﻿using System.Web.Mvc;
-
-namespace PhotoDealer.Web.Areas.Administration
+﻿namespace PhotoDealer.Web.Areas.Administration
 {
-    public class AdministrationAreaRegistration : AreaRegistration 
+    using System.Web.Mvc;
+
+    public class AdministrationAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Administration";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Administration_default",
                 "Administration/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "PhotoDealer.Web.Areas.Administration.Controllers" }
-            );
+                namespaces: new[] { "PhotoDealer.Web.Areas.Administration.Controllers" });
         }
     }
 }
