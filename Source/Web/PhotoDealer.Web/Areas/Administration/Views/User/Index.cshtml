@@ -1,42 +1,80 @@
 ﻿@using PhotoDealer.Web.Areas.Administration.ViewModels
-@model UserViewModel
 
 @{
     ViewBag.Title = "Index";
+    const string UserController = "User";
 }
 
 <h2>Index</h2>
-@using (Html.BeginForm("Update", "User", FormMethod.Post,
-    new { id = "user-update-Form", @class = "form form-horizontal" }))
-{
-    
-    @Html.HiddenFor(m => m.Id)
-    
-    @Html.DisplayFor(m => m.Username)
-    
-    @(Html.Kendo().DropDownList()
-          .Name("RoleId")
-          .HtmlAttributes(new { style = "width: 150px" })
-          .OptionLabel("Select role...")
-          .DataTextField("Name")
-          .DataValueField("Id")
-          .DataSource(source =>
-          {
-              source.Read(read =>
-              {
-                  read.Action("GetRoles", "User");
-              });
-          })
-    )
-    
-    @Html.DisplayFor(m => m.AuthorPicturesCount)
-    
-    @Html.EditorFor(m => m.Credits)
 
+@(Html.Kendo()
+    .Grid<UserViewModel>()
+    .Name(UserController)
+    .Columns(columns =>
+    {
+        columns.Bound(c => c.Username).Width(100);
+        columns.Bound(c => c.CreatedOn).Width(100);
+        columns.Bound(c => c.AuthorPicturesCount).Width(50);
+        columns.Bound(c => c.RoleId).Width(100);
+            //.ClientTemplate("# if (true) { #" + Html.Action("GetRoleName", "Roles", 
+            //new { area = "Administration", id= "#= RoleId #" }) + "# } #"  );
+        columns.Bound(c => c.Credits).Width(100);
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(150);
+    })
+    .Editable(editable => editable.Mode(GridEditMode.InLine))
+    .HtmlAttributes(new { style = "text-align: center;" })
+    .Sortable()
+    .Filterable()
+    .Groupable()
+    .Pageable()
+    .DataSource(dataSource => dataSource
+      .Ajax()
+      .PageSize(10)
+      .Events(events => events.Error("error_handler"))
+      .Model(model => {
+          model.Id(p => p.Id);
+          model.Field(p => p.Username).Editable(false);
+          model.Field(p => p.AuthorPicturesCount).Editable(false);
+          model.Field(p => p.CreatedOn).Editable(false);
+      })
+      .Read(read => read.Action("Read", UserController))
+      .Update(update => update.Action("Update", UserController))
+      .Destroy(update => update.Action("Destroy", UserController)))
+)
 
-    <div class="text-center">
-        <input type="submit" value="Send" class="btn btn-primary">
-        @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-primary" })
-    </div>
-}
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
+
+@*@using (Html.BeginForm("Update", "User", FormMethod.Post,
+        new { id = "user-update-Form", @class = "form form-horizontal" }))
+    {
+
+        @Html.HiddenFor(m => m.Id)
+
+        @Html.DisplayFor(m => m.Username)
+
+        @Html.EditorFor(m => m.RoleId)
+
+        @Html.DisplayFor(m => m.AuthorPicturesCount)
+
+        @Html.EditorFor(m => m.Credits)
+
+        <div class="text-center">
+            <input type="submit" value="Send" class="btn btn-primary">
+            @Html.ActionLink("Cancel", "Index", "Home", null, new { @class = "btn btn-primary" })
+        </div>
+    }*@
 

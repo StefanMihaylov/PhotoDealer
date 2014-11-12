@@ -46,9 +46,9 @@
             get { return this.GetRepository<Category>(); }
         }
 
-        public IDeletableEntityRepository<Transaction> Transactions
+        public IDeletableEntityRepository<CreditTransaction> Transactions
         {
-            get { return this.GetRepository<Transaction>(); }
+            get { return this.GetRepository<CreditTransaction>(); }
         }
 
         public IDeletableEntityRepository<Tag> Tags

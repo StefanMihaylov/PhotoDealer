@@ -8,18 +8,20 @@ using System.Threading.Tasks;
 
 namespace PhotoDealer.Data.Models
 {
-    public class Transaction : AuditInfo, IDeletableEntity
+    public class CreditTransaction : AuditInfo, IDeletableEntity
     {
-        public Transaction()
+        public CreditTransaction()
         {
             this.TransactionId = Guid.NewGuid();
         }
 
         public Guid TransactionId { get; set; }
 
-        public DateTime Date { get; set; }
-
         public decimal Amount { get; set; }
+
+        public string PictureId { get; set; }
+
+        public Picture Picture { get; set; }
 
 
         public string SellerId { get; set; }
@@ -29,6 +31,7 @@ namespace PhotoDealer.Data.Models
         public string BuyerId { get; set; }
 
         public virtual User Buyer { get; set; }
+
 
         [Index]
         public bool IsDeleted { get; set; }

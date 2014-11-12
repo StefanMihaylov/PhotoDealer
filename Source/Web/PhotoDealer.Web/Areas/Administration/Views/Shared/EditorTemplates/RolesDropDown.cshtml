@@ -1,0 +1,18 @@
+﻿@model string
+
+@(Html.Kendo().DropDownList()
+          .Name("RoleId")
+          .ValuePrimitive(true)
+          .HtmlAttributes(new { style = "width: 150px" })
+          .OptionLabel("Select rank...")
+          .DataTextField("Name")
+         // .Value(Model)
+          .DataValueField("Id")
+          .DataSource(source =>
+          {
+              source.Read(read =>
+              {
+                  read.Action("GetRoles", "Roles");
+              });
+          })
+)

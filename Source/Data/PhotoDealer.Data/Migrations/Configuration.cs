@@ -29,7 +29,7 @@ namespace PhotoDealer.Data.Migrations
             {
                 var roles = new List<IdentityRole>()
                 {
-                    new IdentityRole(GlobalConstants.RegularUserRoleName),
+                   // new IdentityRole(GlobalConstants.RegularUserRoleName),
                     new IdentityRole(GlobalConstants.TrustedUserRoleName),
                     new IdentityRole(GlobalConstants.ModeratorRoleName),
                     new IdentityRole(GlobalConstants.AdministratorRoleName),

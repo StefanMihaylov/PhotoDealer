@@ -210,6 +210,7 @@
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Areas\Administration\Controllers\PictureController.cs" />
+    <Compile Include="Areas\Administration\Controllers\RolesController.cs" />
     <Compile Include="Areas\Administration\Controllers\SubCategoryController.cs" />
     <Compile Include="Areas\Administration\Controllers\CategoryGroupController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserController.cs" />
@@ -283,6 +284,9 @@
     <Content Include="Areas\Administration\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administration\Views\Picture\Index.cshtml" />
     <Content Include="Areas\Administration\Views\User\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\Decimal.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\RolesDropDown.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\Decimal.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Kendo\kendo.all.min.js" />
     <Content Include="Kendo\kendo.aspnetmvc.min.js" />
@@ -363,6 +367,7 @@
     <Content Include="Views\Shared\DisplayTemplates\SmallDate.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\JoinTags.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SmallPicture.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\RolesDropDown.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

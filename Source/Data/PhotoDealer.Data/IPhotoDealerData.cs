@@ -15,7 +15,7 @@
 
         IDeletableEntityRepository<Category> Categories { get; }
 
-        IDeletableEntityRepository<Transaction> Transactions { get; }
+        IDeletableEntityRepository<CreditTransaction> Transactions { get; }
 
         IDeletableEntityRepository<Tag> Tags { get; }
 

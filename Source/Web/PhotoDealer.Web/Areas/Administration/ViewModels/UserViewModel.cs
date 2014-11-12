@@ -10,6 +10,7 @@
 
     using Microsoft.AspNet.Identity.EntityFramework;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel;
 
     public class UserViewModel : IMapFrom<User>, IHaveCustomMappings
     {
@@ -18,10 +19,18 @@
 
         public string Username { get; set; }
 
+        [DisplayFormat(DataFormatString="{0:C}")]
         public decimal Credits { get; set; }
 
+        [DisplayName("Registered on")]
+        [DisplayFormat(DataFormatString="{0:yyyy-MM-dd hh:mm:ss}")]
+        public DateTime CreatedOn { get; set; }
+
+        [DisplayName("Rank")]
+        [UIHint("RolesDropDown")]
         public string RoleId { get; set; }
 
+        [DisplayName("Uploaded Pictures")]
         public int? AuthorPicturesCount { get; set; }
 
         public void CreateMappings(IConfiguration configuration)

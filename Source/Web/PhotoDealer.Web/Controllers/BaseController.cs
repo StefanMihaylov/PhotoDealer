@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper.QueryableExtensions;
+using PhotoDealer.Web.Areas.Administration.ViewModels;
+using PhotoDealer.Common;
 
 namespace PhotoDealer.Web.Controllers
 {
@@ -29,6 +32,29 @@ namespace PhotoDealer.Web.Controllers
         {
             get { return this.currentUserId; }
             private set { this.currentUserId = value; }
+        }
+
+        protected bool IsAdmin(string userId)
+        {
+            var allRoles = ((AppDbContext)this.PhotoDb.Context).Roles.ToList();                
+
+            var user = this.PhotoDb.Users.GetById(userId);
+            if (user != null)
+            {
+                foreach (var role in user.Roles)
+                {
+                    var roleName = allRoles.FirstOrDefault(r => r.Id == role.RoleId);
+                    if (roleName != null)
+                    {
+                        if (roleName.Name == GlobalConstants.AdministratorRoleName)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

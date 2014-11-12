@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using PhotoDealer.Common
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -25,32 +27,39 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Pictures", "index", "Picture", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Upload", "index", "Upload", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("???", "index", "Home", new { area = "" }, null)</li>
 
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                            Administration
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                @Html.ActionLink("Categories", "Index", "CategoryGroup",
-                                new { area = "Administration" }, null) @*new { data_toggle = "tab" }*@
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                @Html.ActionLink("Approve Pictures", "Index", "Picture",
-                                new { area = "Administration" }, null)
-                            </li>
-                            <li class="divider"></li>
-                            <li>
-                                @Html.ActionLink("Users", "Index", "User",
-                                new { area = "Administration" }, null)
-                            </li>
-                        </ul>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Upload", "index", "Upload", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("My Pictures", "index", "Home", new { area = "" }, null)</li>
 
-                    </li>
+                        if (User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                                    Administration
+                                    <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        @Html.ActionLink("Categories", "Index", "CategoryGroup",
+                                    new { area = "Administration" }, null) @*new { data_toggle = "tab" }*@
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        @Html.ActionLink("Approve Pictures", "Index", "Picture",
+                                        new { area = "Administration" }, null)
+                                    </li>
+                                    <li class="divider"></li>
+                                    <li>
+                                        @Html.ActionLink("Users", "Index", "User",
+                                        new { area = "Administration" }, null)
+                                    </li>
+                                    </ul>
+                            </li>
+                        }
+
+                    }
 
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -65,8 +74,8 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/bootstrap")    
-    @RenderSection("scripts", required: false)   
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 
 </body>
 </html>

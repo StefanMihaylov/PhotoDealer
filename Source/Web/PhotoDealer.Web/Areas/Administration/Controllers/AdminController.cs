@@ -7,8 +7,8 @@
     using PhotoDealer.Web.Infrastructure.UserProvider;
     using PhotoDealer.Common;
 
-    [Authorize]
-    //[Authorize(Roles = GlobalConstants.AdministratorRoleName)]
+    //[Authorize]
+    [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
     public abstract class AdminController : BaseController
     {
         public AdminController(IPhotoDealerData photoDb, IUserIdProvider userProvider)
