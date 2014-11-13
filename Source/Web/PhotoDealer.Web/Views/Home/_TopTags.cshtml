@@ -1,0 +1,12 @@
+﻿@using PhotoDealer.Web.ViewModels
+@model  IEnumerable<TagViewModel>
+
+<ul class="list-group tags-group">
+    @foreach (var tag in Model)
+    {
+        <li class="list-group-item">
+            <span class="badge">@tag.Count</span>
+            @tag.Content
+        </li>
+    }
+</ul>

@@ -1,0 +1,38 @@
+﻿@using PhotoDealer.Web.ViewModels
+@model  IList<SmallPictureViewModel>
+
+@{
+    int numberInRow = 3;
+
+    int counter = 0;
+    int pictureCount = Model.Count();
+
+    int rows = pictureCount / numberInRow;
+    if (pictureCount % numberInRow > 0)
+    {
+        rows++;
+    }
+}
+
+@for (int i = 0; i < rows; i++)
+{
+    if (counter % numberInRow == 0)
+    {
+        <div class="row text-center">
+            @for (int j = 0; j < numberInRow; j++)
+            {
+                if (counter < pictureCount)
+                {
+                    <div class="col-md-@(12 / numberInRow) col-pictures">
+                        <label class="col-label">
+                            @Html.DisplayFor(m => Model[counter].CreatedOn)
+                        </label>
+
+                        @Html.DisplayFor(m => Model[counter].PictureId)
+                    </div>
+                    counter++;
+                }
+            }
+        </div>
+    }
+}

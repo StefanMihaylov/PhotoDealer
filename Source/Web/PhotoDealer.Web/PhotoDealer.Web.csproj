@@ -241,6 +241,7 @@
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\PictureViewModel.cs" />
     <Compile Include="ViewModels\SmallPictureViewModel.cs" />
+    <Compile Include="ViewModels\TagViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\home-logo.jpg" />
@@ -375,6 +376,8 @@
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\RolesDropDown.cshtml" />
     <Content Include="Views\Home\_TopPhotos.cshtml" />
     <Content Include="Views\Home\_LatestPhotos.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SmallHour.cshtml" />
+    <Content Include="Views\Home\_TopTags.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -34,6 +34,7 @@ textarea {
     background: url(home-logo.jpg) 0 -280px;
     background-repeat: no-repeat;
     background-size: cover;
+    margin-bottom: 5px;
 }
 
 .logo-text {
@@ -46,4 +47,27 @@ textarea {
     font-family: 'Freestyle Script';
     font-size: 40px;
     margin: 0;
+}
+
+.home-top-pictures {
+    padding: 0 2px;
+}
+
+.col-pictures {
+    padding: 0 3px;
+}
+
+.col-label {
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.tags-group {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.tags-panel {
+    padding: 5px;
+    margin-bottom: 5px;
 }

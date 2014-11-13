@@ -2,40 +2,40 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="well well-sm text-center home-logo">
+<div class="row well well-sm text-center home-logo">
     <h2 class="logo-text">Photo Dealer</h2>
     <h4>Incredible photo store. Flexible pricing</h4>
 </div>
 
 <div class="row">
-    <div class="col-sm-5">
+    <div class="col-md-5 home-top-pictures">
         <div class="panel panel-default">
             <div class="panel-heading text-center">
                 Most popular photos
             </div>
             <div class="panel-body">
-                @{Html.RenderAction("GetTopPictures");}
+                @{ Html.RenderAction("GetTopPictures"); }
             </div>
         </div>
     </div>
 
-    <div class="col-sm-5">
+    <div class="col-md-5 home-top-pictures">
         <div class="panel panel-default">
             <div class="panel-heading text-center">
                 Latest photos
             </div>
             <div class="panel-body">
-                @{ Html.RenderAction("GetLatestPictures");}
+                @{ Html.RenderAction("GetLatestPictures"); }
             </div>
         </div>
     </div>
-    <div class="col-sm-2">
+    <div class="col-md-2 home-top-pictures">
         <div class="panel panel-default">
             <div class="panel-heading text-center">
                 Tags
             </div>
-            <div class="panel-body">
-                @* @{Html.RenderAction("GetTopPictures");}*@
+            <div class="panel-body tags-panel">
+                @{ Html.RenderAction("GetTopTags"); }
             </div>
         </div>
     </div>
