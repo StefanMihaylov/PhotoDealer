@@ -56,19 +56,11 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Picture, PictureViewModel>()
-                .ForMember(m => m.PictureId, opt => opt.MapFrom(u => u.PictureId.ToString()));
-
-            configuration.CreateMap<Picture, PictureViewModel>()
-                .ForMember(m => m.Author, opt => opt.MapFrom(u => u.Author.UserName));
-
-            configuration.CreateMap<Picture, PictureViewModel>()
-                .ForMember(m => m.Owner, opt => opt.MapFrom(u => u.Owner.UserName));
-
-            configuration.CreateMap<Picture, PictureViewModel>()
-                .ForMember(m => m.CategoryGroup, opt => opt.MapFrom(u => u.CategoryGroup.GroupName));
-
-            configuration.CreateMap<Picture, PictureViewModel>()
-                .ForMember(m => m.Category, opt => opt.MapFrom(u => u.Category.Name));
+                .ForMember(m => m.PictureId, opt => opt.MapFrom(u => u.PictureId.ToString()))
+                .ForMember(m => m.Author, opt => opt.MapFrom(u => u.Author.UserName))
+                .ForMember(m => m.Owner, opt => opt.MapFrom(u => u.Owner.UserName))
+                .ForMember(m => m.CategoryGroup, opt => opt.MapFrom(u => u.CategoryGroup.GroupName))
+                .ForMember(m => m.Category, opt => opt.MapFrom(u => u.Category.Name));               
         }
     }
 }

@@ -30,16 +30,10 @@ namespace PhotoDealer.Web.Areas.Administration.ViewModels
         public void CreateMappings(AutoMapper.IConfiguration configuration)
         {
             configuration.CreateMap<CreditTransaction, TransactionViewModel>()
-                .ForMember(m => m.Id, opt => opt.MapFrom(u => (u.CreditTransactionId).ToString()));
-
-            configuration.CreateMap<CreditTransaction, TransactionViewModel>()
-                .ForMember(m => m.PictureId, opt => opt.MapFrom(u => u.PictureId.ToString()));
-
-            configuration.CreateMap<CreditTransaction, TransactionViewModel>()
-                .ForMember(m => m.Seller, opt => opt.MapFrom(u => u.Seller.UserName));
-
-            configuration.CreateMap<CreditTransaction, TransactionViewModel>()
-                .ForMember(m => m.Buyer, opt => opt.MapFrom(u => u.Buyer.UserName));
+                .ForMember(m => m.Id, opt => opt.MapFrom(u => (u.CreditTransactionId).ToString()))
+                .ForMember(m => m.PictureId, opt => opt.MapFrom(u => u.PictureId.ToString()))
+                .ForMember(m => m.Seller, opt => opt.MapFrom(u => u.Seller.UserName))
+                .ForMember(m => m.Buyer, opt => opt.MapFrom(u => u.Buyer.UserName));                
         }
     }
 }

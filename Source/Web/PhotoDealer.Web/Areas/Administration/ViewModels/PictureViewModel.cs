@@ -22,17 +22,15 @@
 
         [UIHint("Category")]
         public int? CategoryId { get; set; }
-       
+
         public bool IsVisible { get; set; }
-        
+
         public string Author { get; set; }
 
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Picture, PictureViewModel>()
-                .ForMember(m => m.PictureId, opt => opt.MapFrom(u => u.PictureId.ToString()));
-
-            configuration.CreateMap<Picture, PictureViewModel>()
+                .ForMember(m => m.PictureId, opt => opt.MapFrom(u => u.PictureId.ToString()))
                 .ForMember(m => m.Author, opt => opt.MapFrom(u => u.Author.UserName));
         }
     }

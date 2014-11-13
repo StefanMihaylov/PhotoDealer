@@ -36,12 +36,10 @@
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<User, UserViewModel>()
-                .ForMember(m => m.RoleId, opt => opt.MapFrom(u => u.Roles.FirstOrDefault().RoleId));
-
-            configuration.CreateMap<User, UserViewModel>()
+                .ForMember(m => m.RoleId, opt => opt.MapFrom(u => u.Roles.FirstOrDefault().RoleId))
                 .ForMember(m => m.AuthorPicturesCount,
                         opt => opt.MapFrom(u => u.AuthorPictures
-                            .Where(p => p.IsDeleted == false && p.IsPrivate == false).Count()));
+                            .Where(p => p.IsDeleted == false && p.IsPrivate == false).Count()));      
         }
     }
 }
