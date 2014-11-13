@@ -53,6 +53,7 @@
             return View(picture);
         }
 
+        [OutputCache(Duration = 2 * 60, VaryByParam = "id")]
         public ActionResult GetSmallImage(string id)
         {
             int width = 300;
@@ -61,6 +62,7 @@
             return GetPictureContent(id, width, quallity);
         }
 
+        [OutputCache(Duration = 2 * 60, VaryByParam = "id")]
         public ActionResult GetMediumImage(string id)
         {
             int width = 600;

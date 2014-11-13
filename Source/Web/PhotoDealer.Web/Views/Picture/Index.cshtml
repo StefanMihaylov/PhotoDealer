@@ -6,9 +6,10 @@
 
 }
 
-<h2>Index</h2>
+<h2>Search</h2>
 @{
     int numberInRow = 4;
+    
     int counter = 0;
     int pictureCount = Model.Count();
 
@@ -28,7 +29,7 @@
             {
                 if (counter < pictureCount)
                 {
-                    <div class="col-md-3">
+                    <div class="col-md-@(12 / numberInRow)">
                         @Html.DisplayFor(m => Model[counter].PictureId)
                     </div>
                     counter++;

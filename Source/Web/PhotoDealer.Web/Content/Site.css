@@ -25,6 +25,25 @@ textarea {
 
 
 /* Custom styles*/
-.pictures{
+.pictures {
     margin: 5px 0;
+}
+
+.home-logo {
+    color: black;
+    background: url(home-logo.jpg) 0 -280px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.logo-text {
+    font-family: 'Freestyle Script';
+    font-size: 90px;
+    margin: 0;
+}
+
+.logo-menu {
+    font-family: 'Freestyle Script';
+    font-size: 40px;
+    margin: 0;
 }

@@ -2,7 +2,43 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="well well-sm text-center home-logo">
+    <h2 class="logo-text">Photo Dealer</h2>
+    <h4>Incredible photo store. Flexible pricing</h4>
 </div>
+
+<div class="row">
+    <div class="col-sm-5">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                Most popular photos
+            </div>
+            <div class="panel-body">
+                @{Html.RenderAction("GetTopPictures");}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-5">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                Latest photos
+            </div>
+            <div class="panel-body">
+                @{ Html.RenderAction("GetLatestPictures");}
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-2">
+        <div class="panel panel-default">
+            <div class="panel-heading text-center">
+                Tags
+            </div>
+            <div class="panel-body">
+                @* @{Html.RenderAction("GetTopPictures");}*@
+            </div>
+        </div>
+    </div>
+</div>
+
 

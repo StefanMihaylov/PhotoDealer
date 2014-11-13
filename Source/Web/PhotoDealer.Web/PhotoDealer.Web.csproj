@@ -243,6 +243,7 @@
     <Compile Include="ViewModels\SmallPictureViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\home-logo.jpg" />
     <Content Include="Kendo\styles\Black\editor.png" />
     <Content Include="Kendo\styles\Black\imagebrowser.png" />
     <Content Include="Kendo\styles\Black\indeterminate.gif" />
@@ -372,6 +373,8 @@
     <Content Include="Views\Shared\DisplayTemplates\JoinTags.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SmallPicture.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\EditorTemplates\RolesDropDown.cshtml" />
+    <Content Include="Views\Home\_TopPhotos.cshtml" />
+    <Content Include="Views\Home\_LatestPhotos.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
