@@ -5,7 +5,7 @@
     const string UserController = "User";
 }
 
-<h2>Index</h2>
+<h2>User management</h2>
 
 @(Html.Kendo()
     .Grid<UserViewModel>()
@@ -25,7 +25,7 @@
     .Sortable()
     .Filterable()
     .Groupable()
-    .Pageable()
+    .Pageable(pager => pager.Refresh(true))
     .DataSource(dataSource => dataSource
       .Ajax()
       .PageSize(10)

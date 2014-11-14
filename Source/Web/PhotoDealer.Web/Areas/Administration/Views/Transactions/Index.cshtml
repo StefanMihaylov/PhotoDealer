@@ -5,7 +5,7 @@
     const string ControllerName = "Transactions";
 }
 
-<h2>Index</h2>
+<h2>Transactions</h2>
 
 @(Html.Kendo()
     .Grid<TransactionViewModel>
@@ -18,7 +18,7 @@
         columns.Bound(c => c.Seller).Width(50);
         columns.Bound(c => c.Amount).Width(100);
         columns.Bound(c => c.PictureId).Width(100).ClientTemplate(
-            "#if(PictureId != null) {#" +
+            "#if( PictureId != null ) {#" +
             @Html.ActionLink("Link", "Details", "Picture", new { id = "#=PictureId#", area = string.Empty }, null).ToString() +
                "#} else {#" +
                " " +
@@ -29,7 +29,7 @@
     .Sortable()
     .Filterable()
     .Groupable()
-    .Pageable()
+    .Pageable(pager => pager.Refresh(true))
     .DataSource(dataSource => dataSource
     .Ajax()
     .PageSize(10)

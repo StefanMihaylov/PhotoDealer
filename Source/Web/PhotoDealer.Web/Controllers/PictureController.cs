@@ -10,9 +10,14 @@
     using PhotoDealer.Logic;
     using PhotoDealer.Web.ViewModels;
     using PhotoDealer.Web.Infrastructure.UserProvider;
+    using PhotoDealer.Web.Infrastructure.Search;
+    using System.Collections;
+    using PhotoDealer.Data.Models;
+    using System.Collections.Generic;
 
     public class PictureController : BaseController
     {
+        public const int PageSize = 8;
         private readonly IImageProcess imageProcess;
 
         public PictureController(IPhotoDealerData photoDb, IUserIdProvider userProvider, IImageProcess imageProcess)
@@ -71,6 +76,21 @@
             return GetPictureContent(id, width, quallity);
         }
 
+        [HttpGet]
+        public ActionResult Search(SearchViewModel search)
+        {
+           // this.SaveToSession("search", search);
+
+            var filter = new FilterResults();
+            var picturesQuery = this.PhotoDb.Pictures.All();
+
+            picturesQuery = filter.FilterPictures(picturesQuery, search);
+            var pictures = picturesQuery.Project().To<SmallPictureViewModel>();
+            pictures = filter.Pagenation(pictures, search.Page, PageSize);
+
+            return this.PartialView("_PicturesPagePartial", pictures.ToList());
+        }
+
         private ActionResult GetPictureContent(string id, int width, int quallity)
         {
             var picture = this.PhotoDb.Pictures.All()
@@ -87,6 +107,16 @@
                 outStream.Seek(0, SeekOrigin.Begin);
                 return File(outStream, picture.FileContentType);
             }
+        }
+
+        private void SaveToSession<T>(string key, T value) where T : class
+        {
+            if (this.Session[key] == null)
+            {
+                this.Session[key] = value;
+            }
+
+            value = this.Session[key] as T;
         }
     }
 }

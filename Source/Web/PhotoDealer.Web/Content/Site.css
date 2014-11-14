@@ -29,12 +29,15 @@ textarea {
     margin: 5px 0;
 }
 
+.search-panel{
+    margin-bottom: 5px;
+}
+
 .home-logo {
     color: black;
     background: url(home-logo.jpg) 0 -280px;
     background-repeat: no-repeat;
-    background-size: cover;
-    margin-bottom: 5px;
+    background-size: cover;    
 }
 
 .logo-text {

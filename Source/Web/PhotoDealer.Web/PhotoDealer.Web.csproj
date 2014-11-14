@@ -378,6 +378,9 @@
     <Content Include="Views\Home\_LatestPhotos.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SmallHour.cshtml" />
     <Content Include="Views\Home\_TopTags.cshtml" />
+    <Content Include="Views\Picture\_SearchPartial.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
+    <Content Include="Views\Picture\_PicturesPagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

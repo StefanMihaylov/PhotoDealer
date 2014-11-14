@@ -1,0 +1,61 @@
+﻿@using PhotoDealer.Web.Infrastructure.Search;
+@model SearchViewModel
+
+@using (Ajax.BeginForm("Search", "Picture", new { area = string.Empty },
+    new AjaxOptions { HttpMethod = "GET", InsertionMode = InsertionMode.Replace, UpdateTargetId = "page-container" },
+                    htmlAttributes: new { }))
+{
+    <div class="well well-sm search-panel">
+        <div class="row form-horizontal form-group text-center">
+            <div class="col-md-2">
+                <div>@Html.LabelFor(m => m.OrderBy)</div>
+                @Html.EnumDropDownListFor(m => m.OrderBy, new { @class = "form-control" })
+            </div>
+            <div class="col-md-2">
+                <div>@Html.LabelFor(m => m.OrderType)</div>
+                @Html.EnumDropDownListFor(m => m.OrderType, new { @class = "form-control" })
+            </div>
+            <div class="col-md-4 text-center">
+                <h1 class="title">Pictures</h1>
+            </div>
+            <div class="col-md-2">
+                <div>@Html.LabelFor(m => m.PriceFrom)</div>
+                @Html.EditorFor(m => m.PriceFrom)
+            </div>
+            <div class="col-md-2">
+                <div>@Html.LabelFor(m => m.PriceTo)</div>
+                @Html.EditorFor(m => m.PriceTo)
+            </div>
+        </div>
+        <div class="row form-horizontal form-group text-center search-panel">
+            <div class="col-md-2">
+                <div>@Html.LabelFor(m => m.Title)</div>
+                @Html.EditorFor(m => m.Title)
+            </div>
+            <div class="col-md-2">
+                <div>@Html.LabelFor(m => m.Author)</div>
+                @Html.EditorFor(m => m.Author)
+            </div>
+            <div class="col-md-2">
+                <div>@Html.LabelFor(m => m.CategoryGroup)</div>
+                @Html.EditorFor(m => m.CategoryGroup)
+            </div>
+            <div class="col-md-2">
+                <div>@Html.LabelFor(m => m.Category)</div>
+                @Html.EditorFor(m => m.Category)
+            </div>
+            <div class="col-md-2">
+                <div>@Html.LabelFor(m => m.Tag)</div>
+                @Html.EditorFor(m => m.Tag)
+            </div>
+            <div class="col-md-1">
+                <div>@Html.LabelFor(m => m.Page)</div>
+                @Html.TextBoxFor(m => m.Page, new { @type = "number", min = "1", @class = "form-control text-center" })
+            </div>
+            <div class="col-md-1">
+                <input type="submit" class="btn btn-lg btn-info" value="Find"
+                       style="margin-top: 15px; margin-right: 5px;" />
+            </div>
+        </div>
+    </div>
+}

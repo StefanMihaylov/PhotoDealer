@@ -21,7 +21,7 @@
               .Editable(editable => editable.Mode(GridEditMode.InLine))
               .HtmlAttributes(new { style = "text-align: center;" })
               .Sortable()
-              .Pageable()
+              .Pageable(pager => pager.Refresh(true))
               .Selectable(selectable => selectable.Mode(GridSelectionMode.Multiple))
               .DataSource(dataSource => dataSource
                 .Ajax()
@@ -48,7 +48,7 @@
               .Editable(editable => editable.Mode(GridEditMode.InLine))
               .HtmlAttributes(new { style = "text-align: center;" })
               .Sortable()
-              .Pageable()
+              .Pageable(pager => pager.Refresh(true))
               .DataSource(dataSource => dataSource
                 .Ajax()
                 .PageSize(10)
