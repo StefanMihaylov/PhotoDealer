@@ -240,7 +240,6 @@
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Extensions\NotificationExtensions.cs" />
     <Compile Include="Extensions\NotificationType.cs" />
-    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
