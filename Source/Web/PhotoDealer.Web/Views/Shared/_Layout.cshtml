@@ -31,7 +31,7 @@
                     @if (Request.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Upload", "index", "Upload", new { area = "" }, null)</li>
-                        <li>@Html.ActionLink("My Pictures", "index", "Home", new { area = "" }, null)</li>
+                        <li>@Html.ActionLink("My Pictures", "Owner", "Picture", new { area = "" }, null)</li>
 
                         if (User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {

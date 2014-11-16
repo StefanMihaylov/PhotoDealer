@@ -26,7 +26,16 @@
         public ActionResult Index()
         {
             var pictures = this.PhotoDb.Pictures.All().Where(p => p.IsVisible == true && p.IsPrivate == false)
-                .OrderByDescending(p=> p.CreatedOn)
+                .OrderByDescending(p => p.CreatedOn)
+                .Take(PageSize)
+                .Project().To<SmallPictureViewModel>().ToList();
+            return View(pictures);
+        }
+
+        public ActionResult Owner()
+        {
+            var pictures = this.PhotoDb.Pictures.All().Where(p => p.OwnerId == this.CurrentUserId)
+                .OrderByDescending(p => p.CreatedOn)
                 .Take(PageSize)
                 .Project().To<SmallPictureViewModel>().ToList();
             return View(pictures);
@@ -87,6 +96,11 @@
 
             var filter = new FilterResults();
             var picturesQuery = this.PhotoDb.Pictures.All();
+
+            if (search.PageType == PageTypeEnum.PrivateType)
+            {
+                picturesQuery = picturesQuery.Where(p => p.OwnerId == this.CurrentUserId);
+            }
 
             picturesQuery = filter.FilterPictures(picturesQuery, search);
             var pictures = picturesQuery.Project().To<SmallPictureViewModel>();

@@ -3,11 +3,11 @@
 @model  IList<SmallPictureViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Owner";
 }
 
 @{
-    Html.RenderPartial("_SearchPartial", new SearchViewModel() { Page = 1, PageType = PageTypeEnum.PublicType });
+    Html.RenderPartial("_SearchPartial", new SearchViewModel() { Page = 1, PageType = PageTypeEnum.PrivateType });
 }
 
 <div id="page-container">

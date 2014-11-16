@@ -33,8 +33,17 @@
                 @Html.EditorFor(m => m.Title)
             </div>
             <div class="col-md-2">
-                <div>@Html.LabelFor(m => m.Author)</div>
-                @Html.EditorFor(m => m.Author)
+                @Html.HiddenFor(m => m.PageType)
+                @if (Model.PageType == PageTypeEnum.PublicType)
+                {
+                    <div>@Html.LabelFor(m => m.Author)</div>
+                    @Html.EditorFor(m => m.Author)
+                }
+                else
+                {
+                    <div>@Html.LabelFor(m => m.OwnerType)</div>
+                    @Html.EnumDropDownListFor(m => m.OwnerType, new { @class = "form-control" })
+                }
             </div>
             <div class="col-md-2">
                 <div>@Html.LabelFor(m => m.CategoryGroup)</div>

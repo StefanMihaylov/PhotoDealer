@@ -10,6 +10,7 @@
 
         [Required]
         [MaxLength(30)]
+        [UIHint("KendoString")]
         public string GroupName { get; set; }
     }
 }

@@ -32,7 +32,7 @@
                 query = query.Where(p => p.Title.Contains(search.Title));
             }
 
-            if (!string.IsNullOrWhiteSpace(search.Author))
+            if (!string.IsNullOrWhiteSpace(search.Author) && search.PageType == PageTypeEnum.PublicType)
             {
                 query = query.Where(p => p.Author.UserName.Contains(search.Author));
             }
@@ -60,6 +60,20 @@
             if (search.PriceTo > 0)
             {
                 query = query.Where(p => p.Price <= search.PriceTo);
+            }
+
+
+            if (search.PageType == PageTypeEnum.PrivateType)
+            {
+                switch (search.OwnerType)
+                {
+                    case OwnerTypeEnum.PrivateType:
+                        query = query.Where(p => p.IsPrivate);
+                        break;
+                    case OwnerTypeEnum.PublicType:
+                        query = query.Where(p => !p.IsPrivate);
+                        break;
+                }
             }
 
             return query;

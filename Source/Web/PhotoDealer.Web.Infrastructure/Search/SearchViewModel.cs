@@ -29,5 +29,10 @@
         public OrderTypeEnum OrderType { get; set; }
 
         public int Page { get; set; }
+
+        public PageTypeEnum PageType { get; set; }
+
+        [DisplayName("Picture Type")]
+        public OwnerTypeEnum OwnerType { get; set; }
     }
 }

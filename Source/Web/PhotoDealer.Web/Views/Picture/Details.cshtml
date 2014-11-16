@@ -48,7 +48,7 @@
                 <div>
                     @if (Request.IsAuthenticated)
                     {
-                        if (this.User.Identity.GetUserId() == Model.AuthorId ||
+                        if (this.User.Identity.GetUserId() == Model.OwnerId ||
                             User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
                             @Html.ActionLink("Download", "AuthorDownload", "Download", new { area = "", id = Model.PictureId },

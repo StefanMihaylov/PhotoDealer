@@ -65,6 +65,8 @@
     <Compile Include="Search\FilterResults.cs" />
     <Compile Include="Search\OrderByEnum.cs" />
     <Compile Include="Search\OrderTypeEnum.cs" />
+    <Compile Include="Search\OwnerTypeEnum.cs" />
+    <Compile Include="Search\PageTypeEnum.cs" />
     <Compile Include="Search\SearchViewModel.cs" />
     <Compile Include="UserProvider\IUserIdProvider.cs" />
     <Compile Include="UserProvider\UserIdProvider.cs" />

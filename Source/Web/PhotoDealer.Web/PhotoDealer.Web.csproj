@@ -208,6 +208,7 @@
     <Compile Include="App_Start\ViewEngineConfig.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Administration\Controllers\KendoBaseController.cs" />
     <Compile Include="Areas\Administration\Controllers\PictureController.cs" />
     <Compile Include="Areas\Administration\Controllers\RolesController.cs" />
     <Compile Include="Areas\Administration\Controllers\SubCategoryController.cs" />
@@ -297,6 +298,7 @@
     <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\Decimal.cshtml" />
     <Content Include="Areas\Administration\Views\Transactions\Index.cshtml" />
     <Content Include="Areas\Administration\Views\Picture\_ApprovePicturePartial.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\EditorTemplates\KendoString.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Kendo\kendo.all.min.js" />
     <Content Include="Kendo\kendo.aspnetmvc.min.js" />
@@ -387,8 +389,10 @@
     <Content Include="Views\Picture\_PicturesPagePartial.cshtml" />
     <Content Include="Views\Picture\_DownloadAuthorPartial.cshtml" />
     <Content Include="Views\Shared\_Notifications.cshtml" />
+    <Content Include="Views\Picture\Owner.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Administration\Views\KendoBase\" />
     <Folder Include="Views\Download\" />
   </ItemGroup>
   <ItemGroup>
