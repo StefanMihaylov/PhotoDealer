@@ -1,0 +1,75 @@
+﻿@using PhotoDealer.Web.ViewModels
+@using Microsoft.AspNet.Identity
+@using PhotoDealer.Common
+
+@model PictureViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Details</h2>
+<div class="row">
+    @using (Html.BeginForm("Edit", "Upload", FormMethod.Post, new { id = "edit-Form", @class = "form form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-7">
+            @Html.DisplayFor(m => m.PictureId)
+        </div>
+        <div class="col-md-5">
+            <div class="well well-sm">
+                @Html.ValidationSummary()
+                @Html.HiddenFor(m => m.PictureId)
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Title, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(m => m.Title, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.Title)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CategoryGroup, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(m => m.CategoryGroupId)
+                        @Html.ValidationMessageFor(m => m.CategoryGroupId)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Category, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(m => m.CategoryId)
+                        @Html.ValidationMessageFor(m => m.CategoryId)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Price, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(m => m.Price)
+                        @Html.ValidationMessageFor(m => m.Price)
+                    </div>
+                </div>
+
+
+                <div>
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (this.User.Identity.GetUserId() == Model.OwnerId ||
+                            User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            <input type="submit" value="Save" class="btn btn-success">
+
+                            @Html.ActionLink("Cancel", "Details", "Picture", new { area = "", id = Model.PictureId }, new { @class = "btn btn-primary buttons" })
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/dropdownlist.js" type="text/javascript"></script>
+}

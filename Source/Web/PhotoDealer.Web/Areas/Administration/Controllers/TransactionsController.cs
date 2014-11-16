@@ -19,7 +19,7 @@
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         protected override IRepository<CreditTransaction> GetData()
@@ -32,7 +32,7 @@
             return model.Id;
         }
 
-        protected override void ReverseMapping(CreditTransaction dbModel, TransactionViewModel newModel)
+        protected override void ReverseMapping(CreditTransaction databaseModel, TransactionViewModel newModel)
         {
         }
 

@@ -2,15 +2,15 @@
 {
     using System.Collections.Generic;
     using System.IO;
-    using System.Net;
     using System.Linq;
+    using System.Net;
     using System.Web.Mvc;
     using AutoMapper.QueryableExtensions;
 
     using PhotoDealer.Data;
-    using PhotoDealer.Web.Infrastructure.UserProvider;
-    using PhotoDealer.Web.Areas.Administration.ViewModels;
     using PhotoDealer.Logic;
+    using PhotoDealer.Web.Areas.Administration.ViewModels;
+    using PhotoDealer.Web.Infrastructure.UserProvider;
 
     public class PictureController : AdminController
     {
@@ -26,8 +26,8 @@
         // GET: Administration/Picture
         public ActionResult Index()
         {
-            var pictures = GetPictures(NumberOfPictures);
-            return View(pictures);
+            var pictures = this.GetPictures(NumberOfPictures);
+            return this.View(pictures);
         }
 
         public ActionResult GetSmallImage(string id)
@@ -35,7 +35,7 @@
             int width = 400;
             int quallity = 80;
 
-            return GetPictureContent(id, width, quallity);
+            return this.GetPictureContent(id, width, quallity);
         }
 
         public ActionResult Approve(string id)
@@ -45,13 +45,13 @@
                 var picture = this.PhotoDb.Pictures.All().FirstOrDefault(p => p.PictureId.ToString() == id);
                 if (picture == null)
                 {
-                    return HttpNotFound();
+                    return this.HttpNotFound();
                 }
 
                 picture.IsVisible = true;
                 this.PhotoDb.SaveChanges();
 
-                var pictures = GetPictures(NumberOfPictures);
+                var pictures = this.GetPictures(NumberOfPictures);
                 return this.PartialView("_ApprovePicturePartial", pictures);
             }
 
@@ -65,13 +65,13 @@
                 var picture = this.PhotoDb.Pictures.All().FirstOrDefault(p => p.PictureId.ToString() == id);
                 if (picture == null)
                 {
-                    return HttpNotFound();
+                    return this.HttpNotFound();
                 }
 
                 this.PhotoDb.Pictures.Delete(picture);
                 this.PhotoDb.SaveChanges();
 
-                var pictures = GetPictures(NumberOfPictures);
+                var pictures = this.GetPictures(NumberOfPictures);
                 return this.PartialView("_ApprovePicturePartial", pictures);
             }
 
@@ -86,13 +86,13 @@
 
             if (picture == null)
             {
-                return HttpNotFound();
+                return this.HttpNotFound();
             }
             else
             {
                 MemoryStream outStream = this.imageProcess.Resize(picture.FileContent, width, quallity, false);
                 outStream.Seek(0, SeekOrigin.Begin);
-                return File(outStream, picture.FileContentType);
+                return this.File(outStream, picture.FileContentType);
             }
         }
 

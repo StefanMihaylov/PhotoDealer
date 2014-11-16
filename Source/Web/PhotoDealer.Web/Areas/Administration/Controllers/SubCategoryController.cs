@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using PhotoDealer.Web.ViewModels;
-using PhotoDealer.Data;
-using Kendo.Mvc.UI;
-using Kendo.Mvc.Extensions;
-using PhotoDealer.Data.Models;
-using PhotoDealer.Web.Infrastructure.UserProvider;
-using System.Net;
-using PhotoDealer.Data.Common.Repository;
-using System.Linq.Expressions;
-
-
-namespace PhotoDealer.Web.Areas.Administration.Controllers
+﻿namespace PhotoDealer.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
+    using System.Net;
+    using System.Web.Mvc;
+
+    using AutoMapper.QueryableExtensions;
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+
+    using PhotoDealer.Data;
+    using PhotoDealer.Data.Models;
+    using PhotoDealer.Web.Infrastructure.UserProvider;
+    using PhotoDealer.Web.ViewModels;
+
     public class SubCategoryController : AdminController
     {
-
         public SubCategoryController(IPhotoDealerData photoDb, IUserIdProvider userProvider)
             : base(photoDb, userProvider)
         {
@@ -27,17 +22,17 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
-        //[OutputCache(Duration = 15 * 60, VaryByParam = "id")]
+        // [OutputCache(Duration = 15 * 60, VaryByParam = "id")]
         public ActionResult Read(int? id, [DataSourceRequest] DataSourceRequest request)
         {
             DataSourceResult result;
 
             if (id == null)
             {
-                return Json(new DataSourceResult());
+                return this.Json(new DataSourceResult());
             }
             else
             {
@@ -47,12 +42,11 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
                 result = categories.ToDataSourceResult(request);
             }
 
-            return Json(result);
+            return this.Json(result);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(int? id, [DataSourceRequest] DataSourceRequest request,
-            CategoryViewModel newCategory)
+        public ActionResult Create(int? id, [DataSourceRequest] DataSourceRequest request, CategoryViewModel newCategory)
         {
             if (id == null)
             {
@@ -75,12 +69,11 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
                 this.PhotoDb.SaveChanges();
             }
 
-            return Json(new[] { newCategory }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { newCategory }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Update([DataSourceRequest] DataSourceRequest request,
-            CategoryViewModel newCategory)
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, CategoryViewModel newCategory)
         {
             if (newCategory != null && ModelState.IsValid)
             {
@@ -93,12 +86,11 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
                 }
             }
 
-            return Json(new[] { newCategory }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { newCategory }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
-            CategoryViewModel newCategory)
+        public ActionResult Destroy([DataSourceRequest] DataSourceRequest request, CategoryViewModel newCategory)
         {
             if (newCategory != null)
             {
@@ -111,7 +103,7 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
                 }
             }
 
-            return Json(new[] { newCategory }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { newCategory }.ToDataSourceResult(request, this.ModelState));
         }
     }
 }

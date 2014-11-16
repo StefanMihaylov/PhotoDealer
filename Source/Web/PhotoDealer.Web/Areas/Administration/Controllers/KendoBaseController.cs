@@ -21,15 +21,6 @@
         {
         }
 
-        protected abstract IRepository<T> GetData();
-
-        protected abstract object ModelId(Tmodel model);
-
-        protected abstract void ReverseMapping(T dbModel, Tmodel newModel);
-
-        protected abstract Expression<Func<T, bool>> CheckIsUnique(Tmodel newModel);
-
-
         public virtual ActionResult Read([DataSourceRequest] DataSourceRequest request)
         {
             var queryModel = this.GetData().All()
@@ -43,17 +34,17 @@
         {
             if (newModel != null && this.ModelState.IsValid)
             {
-                var dbModel = this.GetData().All().Where(this.CheckIsUnique(newModel)).FirstOrDefault();
-                if (dbModel == null)
+                var databaseeModel = this.GetData().All().Where(this.CheckIsUnique(newModel)).FirstOrDefault();
+                if (databaseeModel == null)
                 {
-                    dbModel = (T)Activator.CreateInstance(typeof(T));
-                    this.ReverseMapping(dbModel, newModel);
-                    this.GetData().Add(dbModel);
+                    databaseeModel = (T)Activator.CreateInstance(typeof(T));
+                    this.ReverseMapping(databaseeModel, newModel);
+                    this.GetData().Add(databaseeModel);
                 }
                 else
                 {
-                    dbModel.IsDeleted = false;
-                    dbModel.DeletedOn = null;
+                    databaseeModel.IsDeleted = false;
+                    databaseeModel.DeletedOn = null;
                 }
 
                 this.PhotoDb.SaveChanges();
@@ -67,10 +58,10 @@
         {
             if (newModel != null && this.ModelState.IsValid)
             {
-                var dbModel = this.GetById(newModel);
-                if (dbModel != null)
+                var databaseModel = this.GetById(newModel);
+                if (databaseModel != null)
                 {
-                    this.ReverseMapping(dbModel, newModel);
+                    this.ReverseMapping(databaseModel, newModel);
                     this.PhotoDb.SaveChanges();
                 }
             }
@@ -83,16 +74,24 @@
         {
             if (newModel != null)
             {
-                var dbModel = this.GetById(newModel);
-                if (dbModel != null)
+                var databaseModel = this.GetById(newModel);
+                if (databaseModel != null)
                 {
-                    this.GetData().Delete(dbModel);
+                    this.GetData().Delete(databaseModel);
                     this.PhotoDb.SaveChanges();
                 }
             }
 
             return this.JsonKendoResult(newModel, request);
         }
+
+        protected abstract IRepository<T> GetData();
+
+        protected abstract object ModelId(Tmodel model);
+
+        protected abstract void ReverseMapping(T databaseModel, Tmodel newModel);
+
+        protected abstract Expression<Func<T, bool>> CheckIsUnique(Tmodel newModel);
 
         private ActionResult JsonKendoResult(Tmodel newModel, DataSourceRequest request)
         {

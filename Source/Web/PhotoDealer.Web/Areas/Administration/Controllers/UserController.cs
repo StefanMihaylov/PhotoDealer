@@ -1,24 +1,17 @@
 ﻿namespace PhotoDealer.Web.Areas.Administration.Controllers
 {
-    using PhotoDealer.Data;
-    using PhotoDealer.Web.Infrastructure.UserProvider;
-
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
     using System.Web.Mvc;
 
     using AutoMapper.QueryableExtensions;
-
-    using Microsoft.AspNet.Identity.EntityFramework;
-    using PhotoDealer.Web.Areas.Administration.ViewModels;
-
-    using System.Security.Claims;
-    using PhotoDealer.Data.Models;
-    using PhotoDealer.Common;
-    using Kendo.Mvc.UI;
     using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    using PhotoDealer.Data;
+    using PhotoDealer.Data.Models;
+    using PhotoDealer.Web.Areas.Administration.ViewModels;
+    using PhotoDealer.Web.Infrastructure.UserProvider;
 
     public class UserController : AdminController
     {
@@ -32,7 +25,7 @@
         {
             var users = this.PhotoDb.Users.All().Project().To<UserViewModel>();
 
-            return View(users);
+            return this.View(users);
         }
 
         public ActionResult Read([DataSourceRequest] DataSourceRequest request)
@@ -40,14 +33,13 @@
             var users = this.PhotoDb.Users.All()
                 .Project().To<UserViewModel>();
             DataSourceResult result = users.ToDataSourceResult(request);
-            return Json(result);
+            return this.Json(result);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Update([DataSourceRequest] DataSourceRequest request,
-            UserViewModel newUser)
+        public ActionResult Update([DataSourceRequest] DataSourceRequest request, UserViewModel newUser)
         {
-            if (newUser != null && ModelState.IsValid)
+            if (newUser != null && this.ModelState.IsValid)
             {
                 var user = this.PhotoDb.Users.GetById(newUser.Id);
 
@@ -68,7 +60,8 @@
                     else
                     {
                         newUser.RoleId = user.Roles.First().RoleId;
-                        //ModelState.AddModelError(string.Empty, "You cannotr change your Administaror rank!");
+
+                        // ModelState.AddModelError(string.Empty, "You cannotr change your Administaror rank!");
                     }
 
                     if (user.Credits != newUser.Credits)
@@ -77,7 +70,7 @@
                         {
                             Amount = newUser.Credits - user.Credits,
                             BuyerId = this.CurrentUserId,
-                            SellerId =  user.Id,
+                            SellerId = user.Id,
                             PictureId = null
                         };
 
@@ -89,12 +82,11 @@
                 }
             }
 
-            return Json(new[] { newUser }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { newUser }.ToDataSourceResult(request, this.ModelState));
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Destroy([DataSourceRequest] DataSourceRequest request,
-            UserViewModel newUser)
+        public ActionResult Destroy([DataSourceRequest] DataSourceRequest request, UserViewModel newUser)
         {
             if (newUser != null)
             {
@@ -107,7 +99,7 @@
                 }
             }
 
-            return Json(new[] { newUser }.ToDataSourceResult(request, ModelState));
+            return this.Json(new[] { newUser }.ToDataSourceResult(request, this.ModelState));
         }
     }
 }

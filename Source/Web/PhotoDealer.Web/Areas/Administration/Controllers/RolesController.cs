@@ -6,8 +6,8 @@
     using AutoMapper.QueryableExtensions;
 
     using PhotoDealer.Data;
-    using PhotoDealer.Web.Infrastructure.UserProvider;
     using PhotoDealer.Web.Areas.Administration.ViewModels;
+    using PhotoDealer.Web.Infrastructure.UserProvider;
 
     public class RolesController : AdminController
     {
@@ -22,7 +22,7 @@
             var roles = ((AppDbContext)this.PhotoDb.Context).Roles
                 .OrderBy(x => x.Name)
                 .Project().To<RoleViewModel>();
-            return Json(roles, JsonRequestBehavior.AllowGet);
+            return this.Json(roles, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult GetRoleName(string id)
@@ -34,7 +34,7 @@
                 result = role.Name;
             }
 
-            return Content(result);
+            return this.Content(result);
         }
     }
 }

@@ -199,7 +199,9 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
@@ -218,25 +220,36 @@
     <Compile Include="Areas\Administration\Controllers\TransactionsController.cs" />
     <Compile Include="Areas\Administration\Controllers\UserController.cs" />
     <Compile Include="Areas\Administration\ViewModels\PictureViewModel.cs" />
-    <Compile Include="Areas\Administration\ViewModels\RoleViewModel.cs" />
+    <Compile Include="Areas\Administration\ViewModels\RoleViewModel.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Areas\Administration\ViewModels\TransactionViewModel.cs" />
     <Compile Include="Areas\Administration\ViewModels\UserViewModel.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountController.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryGroupController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManageController.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Extensions\NotificationExtensions.cs" />
+    <Compile Include="Extensions\NotificationType.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\AccountViewModels.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
+    <Compile Include="Models\ManageViewModels.cs">
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
@@ -390,6 +403,7 @@
     <Content Include="Views\Picture\_DownloadAuthorPartial.cshtml" />
     <Content Include="Views\Shared\_Notifications.cshtml" />
     <Content Include="Views\Picture\Owner.cshtml" />
+    <Content Include="Views\Picture\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\KendoBase\" />

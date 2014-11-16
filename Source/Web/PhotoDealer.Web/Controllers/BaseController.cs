@@ -1,16 +1,10 @@
-﻿using PhotoDealer.Data;
-using PhotoDealer.Web.Infrastructure.UserProvider;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper.QueryableExtensions;
-using PhotoDealer.Web.Areas.Administration.ViewModels;
-using PhotoDealer.Common;
-
-namespace PhotoDealer.Web.Controllers
+﻿namespace PhotoDealer.Web.Controllers
 {
+    using System.Web.Mvc;
+
+    using PhotoDealer.Data;
+    using PhotoDealer.Web.Infrastructure.UserProvider;
+
     public abstract class BaseController : Controller
     {
         private IPhotoDealerData photoDb;

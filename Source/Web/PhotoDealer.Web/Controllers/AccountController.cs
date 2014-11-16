@@ -34,13 +34,13 @@ namespace PhotoDealer.Web.Controllers
             {
                 return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
             }
+
             private set
             {
                 _userManager = value;
             }
         }
 
-        //
         // GET: /Account/Login
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -57,6 +57,7 @@ namespace PhotoDealer.Web.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
+
             private set { _signInManager = value; }
         }
 
@@ -451,7 +452,9 @@ namespace PhotoDealer.Web.Controllers
             }
 
             public string LoginProvider { get; set; }
+
             public string RedirectUri { get; set; }
+
             public string UserId { get; set; }
 
             public override void ExecuteResult(ControllerContext context)

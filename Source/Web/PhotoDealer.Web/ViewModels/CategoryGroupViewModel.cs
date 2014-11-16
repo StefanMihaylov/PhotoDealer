@@ -1,8 +1,9 @@
 ﻿namespace PhotoDealer.Web.ViewModels
 {
+    using System.ComponentModel.DataAnnotations;
+
     using PhotoDealer.Data.Models;
     using PhotoDealer.Web.Infrastructure.Mapping;
-    using System.ComponentModel.DataAnnotations;
 
     public class CategoryGroupViewModel : IMapFrom<CategoryGroup>
     {

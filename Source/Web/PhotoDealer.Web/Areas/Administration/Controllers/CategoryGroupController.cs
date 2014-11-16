@@ -32,9 +32,9 @@
             return model.CategoryGroupId;
         }
 
-        protected override void ReverseMapping(CategoryGroup dbModel, CategoryGroupViewModel newModel)
+        protected override void ReverseMapping(CategoryGroup databaseModel, CategoryGroupViewModel newModel)
         {
-            dbModel.GroupName = newModel.GroupName;
+            databaseModel.GroupName = newModel.GroupName;
         }
 
         protected override Expression<Func<CategoryGroup, bool>> CheckIsUnique(CategoryGroupViewModel newModel)

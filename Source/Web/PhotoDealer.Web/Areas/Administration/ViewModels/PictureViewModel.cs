@@ -1,13 +1,14 @@
 ﻿namespace PhotoDealer.Web.Areas.Administration.ViewModels
 {
-    using AutoMapper;
-    using PhotoDealer.Data.Models;
-    using PhotoDealer.Web.Infrastructure.Mapping;
-    using PhotoDealer.Web.ViewModels;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+
+    using AutoMapper;
+    using PhotoDealer.Data.Models;
+    using PhotoDealer.Web.Infrastructure.Mapping;
+    using PhotoDealer.Web.ViewModels;
 
     public class PictureViewModel : BaseViewModel, IMapFrom<Picture>, IHaveCustomMappings
     {

@@ -51,9 +51,10 @@
                         if (this.User.Identity.GetUserId() == Model.OwnerId ||
                             User.IsInRole(GlobalConstants.AdministratorRoleName))
                         {
+                        
                             @Html.ActionLink("Download", "AuthorDownload", "Download", new { area = "", id = Model.PictureId },
                 new { @class = "btn btn-success buttons" })
-                            @Html.ActionLink("Edit", "Edit", "Download", new { area = "", id = Model.PictureId },
+                            @Html.ActionLink("Edit", "Edit", "Picture", new { area = "", id = Model.PictureId },
                      new { @class = "btn btn-info buttons" })
                             @Html.ActionLink("Delete", "Delete", "Download", new { area = "", id = Model.PictureId},
                      new { @class = "btn btn-danger buttons" , onclick = string.Format("return confirm('Do you want to delete picture \"{0}\"?')", Model.Title) })

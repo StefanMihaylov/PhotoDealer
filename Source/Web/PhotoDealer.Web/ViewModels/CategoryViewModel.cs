@@ -1,8 +1,9 @@
 ﻿namespace PhotoDealer.Web.ViewModels
 {
+    using System.ComponentModel.DataAnnotations;
+
     using PhotoDealer.Data.Models;
     using PhotoDealer.Web.Infrastructure.Mapping;
-    using System.ComponentModel.DataAnnotations;
 
     public class CategoryViewModel : IMapFrom<Category>
     {
@@ -15,6 +16,6 @@
 
         public int CategoryGroupId { get; set; }
 
-       // public virtual CategoryGroup CategoryGroup { get; set; }
+        // public virtual CategoryGroup CategoryGroup { get; set; }
     }
 }

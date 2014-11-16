@@ -1,10 +1,10 @@
 @using PhotoDealer.Web.Extensions
 
 @{
-    var errorList = Html.GetNotifications(NotificationType.ERROR);
-    var warningList = Html.GetNotifications(NotificationType.WARNING);
-    var successList = Html.GetNotifications(NotificationType.SUCCESS);
-    var infoList = Html.GetNotifications(NotificationType.INFO);
+    var errorList = Html.GetNotifications(NotificationType.Error);
+    var warningList = Html.GetNotifications(NotificationType.Warning);
+    var successList = Html.GetNotifications(NotificationType.Success);
+    var infoList = Html.GetNotifications(NotificationType.Info);
 }
 <!-- display errors -->
 @if (errorList != null)

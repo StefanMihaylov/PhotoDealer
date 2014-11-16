@@ -1,12 +1,13 @@
 ﻿namespace PhotoDealer.Web.ViewModels
 {
-    using AutoMapper;
-    using PhotoDealer.Data.Models;
-    using PhotoDealer.Web.Infrastructure.Mapping;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+
+    using AutoMapper;
+    using PhotoDealer.Data.Models;
+    using PhotoDealer.Web.Infrastructure.Mapping;
 
     public class PictureViewModel : BaseViewModel, IMapFrom<Picture>, IHaveCustomMappings
     {
@@ -23,7 +24,6 @@
 
         [DisplayName("Category Group")]
         public string CategoryGroup { get; set; }
-
 
         [UIHint("Category")]
         public int? CategoryId { get; set; }
@@ -43,7 +43,6 @@
         [UIHint("JoinTags")]
         public ICollection<Tag> Tags { get; set; }
 
-
         public string AuthorId { get; set; }
 
         public virtual string Author { get; set; }
@@ -56,7 +55,6 @@
 
         public int HeightPixels { get; set; }
 
-
         public void CreateMappings(IConfiguration configuration)
         {
             configuration.CreateMap<Picture, PictureViewModel>()
@@ -64,7 +62,7 @@
                 .ForMember(m => m.Author, opt => opt.MapFrom(u => u.Author.UserName))
                 .ForMember(m => m.Owner, opt => opt.MapFrom(u => u.Owner.UserName))
                 .ForMember(m => m.CategoryGroup, opt => opt.MapFrom(u => u.CategoryGroup.GroupName))
-                .ForMember(m => m.Category, opt => opt.MapFrom(u => u.Category.Name));               
+                .ForMember(m => m.Category, opt => opt.MapFrom(u => u.Category.Name));
         }
     }
 }

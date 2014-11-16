@@ -1,14 +1,12 @@
-﻿using PhotoDealer.Data.Models;
-using PhotoDealer.Web.Infrastructure.Mapping;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
-
-namespace PhotoDealer.Web.Areas.Administration.ViewModels
+﻿namespace PhotoDealer.Web.Areas.Administration.ViewModels
 {
+    using System;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
+    using PhotoDealer.Data.Models;
+    using PhotoDealer.Web.Infrastructure.Mapping;
+
     public class TransactionViewModel : IMapFrom<CreditTransaction>, IHaveCustomMappings
     {
         [Key]
@@ -31,10 +29,10 @@ namespace PhotoDealer.Web.Areas.Administration.ViewModels
         public void CreateMappings(AutoMapper.IConfiguration configuration)
         {
             configuration.CreateMap<CreditTransaction, TransactionViewModel>()
-                .ForMember(m => m.Id, opt => opt.MapFrom(u => (u.CreditTransactionId).ToString()))
-                .ForMember(m => m.PictureId, opt => opt.MapFrom(u => (u.PictureId).ToString()))
+                .ForMember(m => m.Id, opt => opt.MapFrom(u => u.CreditTransactionId.ToString()))
+                .ForMember(m => m.PictureId, opt => opt.MapFrom(u => u.PictureId.ToString()))
                 .ForMember(m => m.Seller, opt => opt.MapFrom(u => u.Seller.UserName))
-                .ForMember(m => m.Buyer, opt => opt.MapFrom(u => u.Buyer.UserName));                
+                .ForMember(m => m.Buyer, opt => opt.MapFrom(u => u.Buyer.UserName));
         }
     }
 }

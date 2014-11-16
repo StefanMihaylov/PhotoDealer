@@ -1,12 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
 namespace PhotoDealer.Web.Extensions
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Specialized;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+
     /*                                                                      *
      *      This extension was derive from Brad Christie's answer           *
      *      on StackOverflow.                                               *
@@ -17,7 +17,7 @@ namespace PhotoDealer.Web.Extensions
 
     public static class NotificationExtensions
     {
-        private static IDictionary<String, String> NotificationKey = new Dictionary<String, String>
+        private static IDictionary<string, string> notificationKey = new Dictionary<string, string>
         {
             { "Error",      "App.Notifications.Error" }, 
             { "Warning",    "App.Notifications.Warning" },
@@ -25,31 +25,31 @@ namespace PhotoDealer.Web.Extensions
             { "Info",       "App.Notifications.Info" }
         };
 
-
-        public static void AddNotification(this ControllerBase controller, String message, String notificationType)
+        public static void AddNotification(this ControllerBase controller, string message, string notificationType)
         {
-            string NotificationKey = getNotificationKeyByType(notificationType);
-            ICollection<String> messages = controller.TempData[NotificationKey] as ICollection<String>;
+            string notificationKey = GetNotificationKeyByType(notificationType);
+            ICollection<string> messages = controller.TempData[notificationKey] as ICollection<string>;
 
             if (messages == null)
             {
-                controller.TempData[NotificationKey] = (messages = new HashSet<String>());
+                messages = new HashSet<string>();
+                controller.TempData[notificationKey] = messages;
             }
 
             messages.Add(message);
         }
 
-        public static IEnumerable<String> GetNotifications(this HtmlHelper htmlHelper, String notificationType)
+        public static IEnumerable<string> GetNotifications(this HtmlHelper htmlHelper, string notificationType)
         {
-            string NotificationKey = getNotificationKeyByType(notificationType);
-            return htmlHelper.ViewContext.Controller.TempData[NotificationKey] as ICollection<String> ?? null;
+            string notificationKey = GetNotificationKeyByType(notificationType);
+            return htmlHelper.ViewContext.Controller.TempData[notificationKey] as ICollection<string> ?? null;
         }
 
-        private static string getNotificationKeyByType(string notificationType)
+        private static string GetNotificationKeyByType(string notificationType)
         {
             try
             {
-                return NotificationKey[notificationType];
+                return notificationKey[notificationType];
             }
             catch (IndexOutOfRangeException e)
             {
@@ -57,14 +57,5 @@ namespace PhotoDealer.Web.Extensions
                 throw exception;
             }
         }
-    }
-
-    public static class NotificationType
-    {
-        public const string ERROR = "Error";
-        public const string WARNING = "Warning";
-        public const string SUCCESS = "Success";
-        public const string INFO = "Info";
-
     }
 }

@@ -7,7 +7,6 @@
 
     public class FilterResults
     {
-
         public IQueryable<T> Pagenation<T>(IQueryable<T> query, int page, int pageSize)
         {
             if (page <= 0)
@@ -25,7 +24,7 @@
                 return null;
             }
 
-            query = OrderByPictures(query, search);
+            query = this.OrderByPictures(query, search);
 
             if (!string.IsNullOrWhiteSpace(search.Title))
             {
@@ -61,7 +60,6 @@
             {
                 query = query.Where(p => p.Price <= search.PriceTo);
             }
-
 
             if (search.PageType == PageTypeEnum.PrivateType)
             {
@@ -135,6 +133,5 @@
 
             return query;
         }
-
     }
 }
