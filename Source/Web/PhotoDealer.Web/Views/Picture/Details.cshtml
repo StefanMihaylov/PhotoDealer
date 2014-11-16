@@ -55,9 +55,10 @@
                 new { @class = "btn btn-success buttons" })
                             @Html.ActionLink("Edit", "Edit", "Download", new { area = "", id = Model.PictureId },
                      new { @class = "btn btn-info buttons" })
-                            @Html.ActionLink("Delete", "Delete", "Download", new { area = "", id = Model.PictureId },
-                     new { @class = "btn btn-danger buttons" })
-                            @Html.ActionLink("Cancel", "Index", "Picture", new { area = "" },
+                            @Html.ActionLink("Delete", "Delete", "Download", new { area = "", id = Model.PictureId},
+                     new { @class = "btn btn-danger buttons" , onclick = string.Format("return confirm('Do you want to delete picture \"{0}\"?')", Model.Title) })
+                        
+                            @Html.ActionLink("Cancel", "Owner", "Picture", new { area = "" },
                      new { @class = "btn btn-primary buttons" })
                         }
                         else

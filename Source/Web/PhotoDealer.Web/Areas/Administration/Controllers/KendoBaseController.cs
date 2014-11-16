@@ -1,21 +1,18 @@
 ﻿namespace PhotoDealer.Web.Areas.Administration.Controllers
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Web;
+    using System.Linq.Expressions;
     using System.Web.Mvc;
 
+    using AutoMapper.QueryableExtensions;
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
 
     using PhotoDealer.Data;
-    using PhotoDealer.Web.Infrastructure.UserProvider;
-    using PhotoDealer.Data.Common.Repository;
-    using System.Linq.Expressions;
     using PhotoDealer.Data.Common.Models;
-    using AutoMapper.QueryableExtensions;
+    using PhotoDealer.Data.Common.Repository;
+    using PhotoDealer.Web.Infrastructure.UserProvider;
 
     public abstract class KendoBaseController<T, Tmodel> : AdminController where T : class, IDeletableEntity
     {
@@ -42,7 +39,7 @@
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create([DataSourceRequest] DataSourceRequest request, Tmodel newModel)
+        public virtual ActionResult Create([DataSourceRequest] DataSourceRequest request, Tmodel newModel)
         {
             if (newModel != null && this.ModelState.IsValid)
             {
@@ -66,7 +63,7 @@
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Update([DataSourceRequest] DataSourceRequest request, Tmodel newModel)
+        public virtual ActionResult Update([DataSourceRequest] DataSourceRequest request, Tmodel newModel)
         {
             if (newModel != null && this.ModelState.IsValid)
             {
@@ -82,7 +79,7 @@
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Destroy([DataSourceRequest] DataSourceRequest request, Tmodel newModel)
+        public virtual ActionResult Destroy([DataSourceRequest] DataSourceRequest request, Tmodel newModel)
         {
             if (newModel != null)
             {

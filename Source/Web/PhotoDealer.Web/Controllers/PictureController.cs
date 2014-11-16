@@ -1,4 +1,4 @@
-﻿namespace PhotoDealer.Web.Controllers
+﻿﻿namespace PhotoDealer.Web.Controllers
 {
     using System.IO;
     using System.Linq;

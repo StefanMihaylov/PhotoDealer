@@ -121,6 +121,11 @@
         public ActionResult Edit(string id)
         {
             var picture = GetPictureFromDb(id);
+            if (picture == null)
+            {
+                return HttpNotFound();
+            }
+
 
             if (IsOwner(picture.AuthorId))
             {
@@ -135,6 +140,10 @@
         public ActionResult Delete(string id)
         {
             var picture = GetPictureFromDb(id);
+            if (picture == null)
+            {
+                return HttpNotFound();
+            }
 
             if (IsOwner(picture.OwnerId))
             {

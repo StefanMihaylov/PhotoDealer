@@ -11,6 +11,8 @@ using Kendo.Mvc.Extensions;
 using PhotoDealer.Data.Models;
 using PhotoDealer.Web.Infrastructure.UserProvider;
 using System.Net;
+using PhotoDealer.Data.Common.Repository;
+using System.Linq.Expressions;
 
 
 namespace PhotoDealer.Web.Areas.Administration.Controllers
@@ -23,7 +25,6 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
         {
         }
 
-        // GET: Administration/CategoryGroup
         public ActionResult Index()
         {
             return View();
@@ -36,14 +37,14 @@ namespace PhotoDealer.Web.Areas.Administration.Controllers
 
             if (id == null)
             {
-                result = new DataSourceResult();
+                return Json(new DataSourceResult());
             }
             else
             {
                 var categories = this.PhotoDb.Categories.All()
                     .Where(c => c.CategoryGroupId == id.Value)
                     .Project().To<CategoryViewModel>();
-                result = categories.ToDataSourceResult(request);                
+                result = categories.ToDataSourceResult(request);
             }
 
             return Json(result);

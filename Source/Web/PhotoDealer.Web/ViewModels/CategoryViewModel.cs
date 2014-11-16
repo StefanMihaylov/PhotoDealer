@@ -10,6 +10,7 @@
 
         [Required]
         [MaxLength(30)]
+        [UIHint("KendoString")]
         public string Name { get; set; }
 
         public int CategoryGroupId { get; set; }
