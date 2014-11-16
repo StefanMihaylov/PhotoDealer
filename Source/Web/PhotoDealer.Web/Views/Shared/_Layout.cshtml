@@ -44,24 +44,24 @@
                                     <li>
                                         @Html.ActionLink("Categories", "Index", "CategoryGroup",
                                     new { area = "Administration" }, null) @*new { data_toggle = "tab" }*@
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        @Html.ActionLink("Approve Pictures", "Index", "Picture",
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    @Html.ActionLink("Approve Pictures", "Index", "Picture",
                                         new { area = "Administration" }, null)
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        @Html.ActionLink("Users", "Index", "User",
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    @Html.ActionLink("Users", "Index", "User",
                                         new { area = "Administration" }, null)
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        @Html.ActionLink("Transactions", "Index", "Transactions",
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    @Html.ActionLink("Transactions", "Index", "Transactions",
                                         new { area = "Administration" }, null)
-                                    </li>
-                                    </ul>
-                            </li>
+                                </li>
+                            </ul>
+                        </li>
                         }
 
                     }
@@ -72,6 +72,7 @@
         </div>
     </div>
     <div class="container body-content">
+        @Html.Partial("_Notifications")
         @RenderBody()
         <hr />
         <footer class="text-center">
@@ -81,6 +82,7 @@
 
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/unobtrusive-jquery")
+    @Scripts.Render("~/bundles/jqueryval")
     @RenderSection("scripts", required: false)
 
 </body>

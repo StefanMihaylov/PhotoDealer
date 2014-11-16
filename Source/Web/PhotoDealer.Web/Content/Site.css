@@ -29,7 +29,7 @@ textarea {
     margin: 5px 0;
 }
 
-.search-panel{
+.search-panel {
     margin-bottom: 5px;
 }
 
@@ -37,7 +37,7 @@ textarea {
     color: black;
     background: url(home-logo.jpg) 0 -280px;
     background-repeat: no-repeat;
-    background-size: cover;    
+    background-size: cover;
 }
 
 .logo-text {
@@ -73,4 +73,8 @@ textarea {
 .tags-panel {
     padding: 5px;
     margin-bottom: 5px;
+}
+
+.buttons {
+    margin: 0 10px;
 }

@@ -21,11 +21,11 @@
         public Guid? PictureId { get; set; }
 
         public virtual Picture Picture { get; set; }
-
+        
         public string SellerId { get; set; }
 
         public virtual User Seller { get; set; }
-
+        
         public string BuyerId { get; set; }
 
         public virtual User Buyer { get; set; }

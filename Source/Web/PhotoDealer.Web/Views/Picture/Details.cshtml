@@ -1,10 +1,99 @@
 ﻿@using PhotoDealer.Web.ViewModels
+@using Microsoft.AspNet.Identity
+@using PhotoDealer.Common
+
 @model PictureViewModel
 @{
     ViewBag.Title = "Details";
+    const string FormatString = " - price: {0}; {1} x {2} pixels";
 }
 
 <h2>Details</h2>
-@Html.DisplayFor(m => m)
+<div class="row">
+    <div class="col-md-7">
+        @Html.DisplayFor(m => m.PictureId)
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="text-center">
+                    @Html.DisplayFor(m => m.Title)
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.Author): @Html.DisplayFor(m => m.Author)
+                    </li>
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.CreatedOn): @Html.DisplayFor(m => m.CreatedOn)
+                    </li>
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.Category): @Html.DisplayFor(m => m.CategoryGroup) - @Html.DisplayFor(m => m.Category)
+                    </li>
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.Tags): @Html.DisplayFor(m => m.Tags)
+                    </li>
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.Downloads): @Html.DisplayFor(m => m.Downloads)
+                    </li>
+                    @if (!Request.IsAuthenticated)
+                    {
+                        <li class="list-group-item">
+                            @Html.LabelFor(m => m.Price): @Html.DisplayFor(m => m.Price)
+                        </li>
+                    }
+                </ul>
 
+                <div>
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (this.User.Identity.GetUserId() == Model.AuthorId ||
+                            User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        {
+                            @Html.ActionLink("Download", "AuthorDownload", "Download", new { area = "", id = Model.PictureId },
+                new { @class = "btn btn-success buttons" })
+                            @Html.ActionLink("Edit", "Edit", "Download", new { area = "", id = Model.PictureId },
+                     new { @class = "btn btn-info buttons" })
+                            @Html.ActionLink("Delete", "Delete", "Download", new { area = "", id = Model.PictureId },
+                     new { @class = "btn btn-danger buttons" })
+                            @Html.ActionLink("Cancel", "Index", "Picture", new { area = "" },
+                     new { @class = "btn btn-primary buttons" })
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("Download", "Download"))
+                            {
+                                @Html.HiddenFor(m => m.PictureId)
+                                <div>
+                                    @Html.RadioButton("pictureSize", PictureSizeEnum.Small)
+                                    @Html.Label(PictureSizeEnum.Small.ToString())
+                                    @(string.Format(FormatString, Model.Price / 10, Model.WidthPixels / 10, Model.HeightPixels / 10))
+                                </div>
+                                <div>
+                                    @Html.RadioButton("pictureSize", PictureSizeEnum.Medium)
+                                    @Html.Label(PictureSizeEnum.Medium.ToString())
+                                    @(string.Format(FormatString, Model.Price / 2, Model.WidthPixels / 2, Model.HeightPixels / 2))
+                                </div>
+                                <div>
+                                    @Html.RadioButton("pictureSize", PictureSizeEnum.Original, new { @checked = "checked" })
+                                    @Html.Label(PictureSizeEnum.Original.ToString())
+                                    @(string.Format(FormatString, Model.Price, Model.WidthPixels, Model.HeightPixels))
+                                </div>
+                                <div>
+                                    @Html.RadioButton("pictureSize", PictureSizeEnum.BuyRights)
+                                    @Html.Label(PictureSizeEnum.BuyRights.ToString())
+                                    @(string.Format(FormatString, Model.Price * 100, Model.WidthPixels, Model.HeightPixels))
 
+                                </div>
+
+                                <input type="submit" value="Buy" class="btn btn-info buttons" />
+                                @Html.ActionLink("Cancel", "Index", "Picture", new { area = "" }, new { @class = "btn btn-primary buttons" })
+                            }
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

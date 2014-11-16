@@ -11,9 +11,6 @@
     using PhotoDealer.Web.ViewModels;
     using PhotoDealer.Web.Infrastructure.UserProvider;
     using PhotoDealer.Web.Infrastructure.Search;
-    using System.Collections;
-    using PhotoDealer.Data.Models;
-    using System.Collections.Generic;
 
     public class PictureController : BaseController
     {
@@ -29,6 +26,8 @@
         public ActionResult Index()
         {
             var pictures = this.PhotoDb.Pictures.All().Where(p => p.IsVisible == true && p.IsPrivate == false)
+                .OrderByDescending(p=> p.CreatedOn)
+                .Take(PageSize)
                 .Project().To<SmallPictureViewModel>().ToList();
             return View(pictures);
         }
@@ -47,6 +46,11 @@
 
         public ActionResult Details(string id)
         {
+            if (id == null)
+            {
+                this.RedirectToAction("Index", "Home", new { area = string.Empty });
+            }
+
             var picture = this.PhotoDb.Pictures.All().Where(p => p.PictureId.ToString() == id)
                     .Project().To<PictureViewModel>().FirstOrDefault();
 
@@ -79,7 +83,7 @@
         [HttpGet]
         public ActionResult Search(SearchViewModel search)
         {
-           // this.SaveToSession("search", search);
+            // this.SaveToSession("search", search);
 
             var filter = new FilterResults();
             var picturesQuery = this.PhotoDb.Pictures.All();
@@ -91,11 +95,11 @@
             return this.PartialView("_PicturesPagePartial", pictures.ToList());
         }
 
-        private ActionResult GetPictureContent(string id, int width, int quallity)
+        protected ActionResult GetPictureContent(string id, int width, int quallity)
         {
             var picture = this.PhotoDb.Pictures.All()
-                              .Where(p => p.PictureId.ToString() == id && p.IsVisible)
-                              .FirstOrDefault();
+                  .Where(p => p.PictureId.ToString() == id && p.IsVisible)
+                  .FirstOrDefault();
 
             if (picture == null)
             {

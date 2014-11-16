@@ -52,6 +52,10 @@
 
         public virtual string Owner { get; set; }
 
+        public int WidthPixels { get; set; }
+
+        public int HeightPixels { get; set; }
+
 
         public void CreateMappings(IConfiguration configuration)
         {

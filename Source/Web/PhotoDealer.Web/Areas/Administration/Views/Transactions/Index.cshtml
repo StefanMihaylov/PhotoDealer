@@ -17,13 +17,12 @@
         columns.Bound(c => c.Buyer).Width(100);
         columns.Bound(c => c.Seller).Width(50);
         columns.Bound(c => c.Amount).Width(100);
-        columns.Bound(c => c.PictureId).Width(100).ClientTemplate(
-            "#if( PictureId != null ) {#" +
-            @Html.ActionLink("Link", "Details", "Picture", new { id = "#=PictureId#", area = string.Empty }, null).ToString() +
-               "#} else {#" +
-               " " +
-               "# } #"
-            );
+        columns.Bound(c => c.PictureId).ClientTemplate(
+            "#if( PictureId != \"\" ) {#" +
+            "<a href='" + Url.Content("~/picture/details/") + "#= PictureId #'>Link</a>"  +
+            "#} else {#" +
+              " " +
+            "# } #").Width(100);
     })
     .HtmlAttributes(new { style = "text-align: center;" })
     .Sortable()
@@ -33,6 +32,7 @@
     .DataSource(dataSource => dataSource
     .Ajax()
     .PageSize(10)
+    .Sort(a => a.Add(t => t.CreatedOn).Descending())
     .Events(events => events.Error("error_handler"))
     .Model(model =>
     {

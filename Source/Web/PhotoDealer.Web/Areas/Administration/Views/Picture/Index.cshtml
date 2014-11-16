@@ -1,60 +1,11 @@
-﻿@using PhotoDealer.Web.Areas.Administration.ViewModels
-@model IList<PictureViewModel>
-
-@{
+﻿@{
     ViewBag.Title = "Approve";
-}
-
-@{
-    int numberInRow = 3;
-    int counter = 0;
-    int pictureCount = Model.Count();
-
-    int rows = pictureCount / numberInRow;
-    if (pictureCount % numberInRow > 0)
-    {
-        rows++;
-    }
 }
 
 <h2>Approve Pictures</h2>
 
-@if (Model.Count == 0)
-{
-    <h3>No pictures for approval</h3>
-}
-else
-{
-    for (int i = 0; i < rows; i++)
-    {
-        if (counter % numberInRow == 0)
-        {
-            <div class="row">
-                @for (int j = 0; j < numberInRow; j++)
-                {
-                    if (counter < pictureCount)
-                    {
-                        <div class="col-md-4 text-center">
-                            @Html.DisplayFor(m => Model[counter].PictureId)
-                            <div class="col-md-6">
-                                @Html.LabelFor(m => Model[counter].Author): @Html.DisplayFor(m => Model[counter].Author)
-                            </div>
-                            <div class="col-md-6">
-                                @Ajax.ActionLink("Approve", "Approve", "Picture",
-                            new { area = "Administration", id = Model[counter].PictureId },
-                            ajaxOptions: new AjaxOptions { HttpMethod = "POST" },
-                            htmlAttributes: new { @class = "btn btn-success" })
-
-                                @Ajax.ActionLink("Delete", "Delete", "Picture",
-                            new { area = "Administration", id = Model[counter].PictureId },
-                            ajaxOptions: new AjaxOptions { HttpMethod = "POST" },
-                            htmlAttributes: new { @class = "btn btn-danger" })
-                            </div>
-                        </div>
-                        counter++;
-                    }
-                }
-            </div>
-        }
+<div id="approve-container">
+    @{
+        Html.RenderPartial("_ApprovePicturePartial");
     }
-}
+</div>

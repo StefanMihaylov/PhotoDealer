@@ -21,19 +21,13 @@
                         @Html.LabelFor(m => m.CreatedOn): @Html.DisplayFor(m => m.CreatedOn)
                     </li>
                     <li class="list-group-item">
-                        @Html.LabelFor(m => m.CategoryGroup): @Html.DisplayFor(m => m.CategoryGroup)
-                    </li>
-                    <li class="list-group-item">
-                        @Html.LabelFor(m => m.Category): @Html.DisplayFor(m => m.Category)
+                        @Html.LabelFor(m => m.Category): @Html.DisplayFor(m => m.CategoryGroup) - @Html.DisplayFor(m => m.Category)
                     </li>
                     <li class="list-group-item">
                         @Html.LabelFor(m => m.Tags): @Html.DisplayFor(m => m.Tags)
                     </li>
                     <li class="list-group-item">
                         @Html.LabelFor(m => m.Downloads): @Html.DisplayFor(m => m.Downloads)
-                    </li>
-                    <li class="list-group-item">
-                        @Html.LabelFor(m => m.Price): @Html.DisplayFor(m => m.Price)
                     </li>
                 </ul>
             </div>

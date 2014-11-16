@@ -11,6 +11,7 @@ namespace PhotoDealer.Web.Areas.Administration.ViewModels
 {
     public class TransactionViewModel : IMapFrom<CreditTransaction>, IHaveCustomMappings
     {
+        [Key]
         public string Id { get; set; }
 
         [DisplayFormat(DataFormatString = "{0:C}")]
@@ -31,7 +32,7 @@ namespace PhotoDealer.Web.Areas.Administration.ViewModels
         {
             configuration.CreateMap<CreditTransaction, TransactionViewModel>()
                 .ForMember(m => m.Id, opt => opt.MapFrom(u => (u.CreditTransactionId).ToString()))
-                .ForMember(m => m.PictureId, opt => opt.MapFrom(u => u.PictureId.ToString()))
+                .ForMember(m => m.PictureId, opt => opt.MapFrom(u => (u.PictureId).ToString()))
                 .ForMember(m => m.Seller, opt => opt.MapFrom(u => u.Seller.UserName))
                 .ForMember(m => m.Buyer, opt => opt.MapFrom(u => u.Buyer.UserName));                
         }

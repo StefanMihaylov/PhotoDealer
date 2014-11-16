@@ -224,10 +224,12 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CategoryGroupController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DownloadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Extensions\NotificationExtensions.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -239,6 +241,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CategoryGroupViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\PictureSizeEnum.cs" />
     <Compile Include="ViewModels\PictureViewModel.cs" />
     <Compile Include="ViewModels\SmallPictureViewModel.cs" />
     <Compile Include="ViewModels\TagViewModel.cs" />
@@ -293,6 +296,7 @@
     <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\RolesDropDown.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\DisplayTemplates\Decimal.cshtml" />
     <Content Include="Areas\Administration\Views\Transactions\Index.cshtml" />
+    <Content Include="Areas\Administration\Views\Picture\_ApprovePicturePartial.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Kendo\kendo.all.min.js" />
     <Content Include="Kendo\kendo.aspnetmvc.min.js" />
@@ -381,8 +385,12 @@
     <Content Include="Views\Picture\_SearchPartial.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Picture\_PicturesPagePartial.cshtml" />
+    <Content Include="Views\Picture\_DownloadAuthorPartial.cshtml" />
+    <Content Include="Views\Shared\_Notifications.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Download\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
