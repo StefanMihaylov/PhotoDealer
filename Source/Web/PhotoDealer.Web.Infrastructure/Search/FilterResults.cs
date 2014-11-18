@@ -73,6 +73,10 @@
                         break;
                 }
             }
+            else
+            {
+                query = query.Where(p => p.IsVisible);
+            }
 
             return query;
         }

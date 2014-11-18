@@ -6,6 +6,8 @@
 @{
     ViewBag.Title = "Details";
     const string FormatString = " - price: {0}; {1} x {2} pixels";
+
+    var isDonwloadable = this.User.Identity.GetUserId() == Model.OwnerId || User.IsInRole(GlobalConstants.AdministratorRoleName);
 }
 
 <h2>Details</h2>
@@ -43,22 +45,33 @@
                             @Html.LabelFor(m => m.Price): @Html.DisplayFor(m => m.Price)
                         </li>
                     }
+
+                    @if (isDonwloadable)
+                    {
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.Price): @Html.DisplayFor(m => m.Price)
+                    </li>
+
+                    <li class="list-group-item">
+                        @Html.LabelFor(m => m.IsVisible): @Html.DisplayFor(m => m.IsVisible)
+                    </li>
+                    }
                 </ul>
+
 
                 <div>
                     @if (Request.IsAuthenticated)
                     {
-                        if (this.User.Identity.GetUserId() == Model.OwnerId ||
-                            User.IsInRole(GlobalConstants.AdministratorRoleName))
+                        if (isDonwloadable)
                         {
-                        
+
                             @Html.ActionLink("Download", "AuthorDownload", "Download", new { area = "", id = Model.PictureId },
                 new { @class = "btn btn-success buttons" })
                             @Html.ActionLink("Edit", "Edit", "Picture", new { area = "", id = Model.PictureId },
                      new { @class = "btn btn-info buttons" })
-                            @Html.ActionLink("Delete", "Delete", "Download", new { area = "", id = Model.PictureId},
-                     new { @class = "btn btn-danger buttons" , onclick = string.Format("return confirm('Do you want to delete picture \"{0}\"?')", Model.Title) })
-                        
+                            @Html.ActionLink("Delete", "Delete", "Download", new { area = "", id = Model.PictureId },
+                     new { @class = "btn btn-danger buttons", onclick = string.Format("return confirm('Do you want to delete picture \"{0}\"?')", Model.Title) })
+
                             @Html.ActionLink("Cancel", "Owner", "Picture", new { area = "" },
                      new { @class = "btn btn-primary buttons" })
                         }

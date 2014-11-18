@@ -403,6 +403,7 @@
     <Content Include="Views\Shared\_Notifications.cshtml" />
     <Content Include="Views\Picture\Owner.cshtml" />
     <Content Include="Views\Picture\Edit.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Bool.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Administration\Views\KendoBase\" />

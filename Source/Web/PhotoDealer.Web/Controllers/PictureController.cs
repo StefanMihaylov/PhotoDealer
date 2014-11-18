@@ -132,7 +132,7 @@
          private ActionResult GetPictureContent(string id, int width, int quallity)
          {
              var picture = this.PhotoDb.Pictures.All()
-                   .Where(p => p.PictureId.ToString() == id && p.IsVisible)
+                   .Where(p => p.PictureId.ToString() == id)
                    .FirstOrDefault();
 
              if (picture == null)
