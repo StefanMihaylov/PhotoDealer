@@ -6,15 +6,15 @@
     using System.Net;
     using System.Reflection;
     using System.Web.Mvc;
-    using AutoMapper.QueryableExtensions;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Telerik.JustMock;
     using PhotoDealer.Data;
     using PhotoDealer.Data.Models;
     using PhotoDealer.Web.Controllers;
     using PhotoDealer.Web.Infrastructure.Mapping;
     using PhotoDealer.Web.Infrastructure.UserProvider;
     using PhotoDealer.Web.ViewModels;
+    using Telerik.JustMock;
 
     [TestClass]
     public class CategoryGroupControllerTests
@@ -30,10 +30,20 @@
         [TestMethod]
         public void GetAll_WhenValid_ShouldReturnCategoryGroupCollection()
         {
-            var categoryGroups = new List<CategoryGroup>(){
-                new CategoryGroup(){ GroupName = "Test Group Name #1"},
-                new CategoryGroup(){ GroupName = "Test Group Name #2"},
-                new CategoryGroup(){ GroupName = "Test Group Name #3"},
+            var categoryGroups = new List<CategoryGroup>()
+            {
+                new CategoryGroup()
+                { 
+                    GroupName = "Test Group Name #1" 
+                },
+                new CategoryGroup()
+                { 
+                    GroupName = "Test Group Name #2" 
+                },
+                new CategoryGroup()
+                { 
+                    GroupName = "Test Group Name #3" 
+                },
             };
 
             var fakeData = Mock.Create<IPhotoDealerData>();
@@ -62,10 +72,11 @@
         [TestMethod]
         public void GetView_WhenValid_ShouldReturnCategoryGroupView()
         {
-            var categoryGroups = new List<CategoryGroup>(){
-                new CategoryGroup(){ GroupName = "Test Group Name #1"},
-                new CategoryGroup(){ GroupName = "Test Group Name #2"},
-                new CategoryGroup(){ GroupName = "Test Group Name #3"},
+            var categoryGroups = new List<CategoryGroup>()
+            {
+                new CategoryGroup() { GroupName = "Test Group Name #1" },
+                new CategoryGroup() { GroupName = "Test Group Name #2" },
+                new CategoryGroup() { GroupName = "Test Group Name #3" },
             };
 
             var fakeData = Mock.Create<IPhotoDealerData>();

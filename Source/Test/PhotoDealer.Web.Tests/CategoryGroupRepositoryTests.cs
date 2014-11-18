@@ -9,7 +9,7 @@
     [TestClass]
     public class CategoryGroupRepositoryTests
     {
-        static TransactionScope tran;
+        private static TransactionScope tran;
 
         [TestInitialize]
         public void TestInit()
