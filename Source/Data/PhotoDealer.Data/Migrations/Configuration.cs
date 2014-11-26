@@ -5,10 +5,11 @@ namespace PhotoDealer.Data.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    using Microsoft.AspNet.Identity.EntityFramework;   
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     using PhotoDealer.Common;
-    using PhotoDealer.Data.Models;    
+    using PhotoDealer.Data.Models;
+    using Microsoft.AspNet.Identity;
 
     internal sealed class Configuration : DbMigrationsConfiguration<PhotoDealer.Data.AppDbContext>
     {
@@ -36,6 +37,32 @@ namespace PhotoDealer.Data.Migrations
                 };
 
                 context.Roles.AddOrUpdate(roles.ToArray());
+                context.SaveChanges();
+            }
+
+            if (!context.Users.Any())
+            {
+                var userManager = new UserManager<User>(new UserStore<User>(context));
+
+                var adminEmail = "admin@photodealer.com";
+                var admin = new User()
+                {
+                    UserName = adminEmail,
+                    Email = adminEmail
+                };
+
+                userManager.Create(admin, "123456");
+                userManager.AddToRole(admin.Id, GlobalConstants.AdministratorRoleName);
+
+                var userEmail = "user@photodealer.com";
+                var user = new User()
+                {
+                    UserName = userEmail,
+                    Email = userEmail
+                };
+
+                userManager.Create(user, "123456");
+
                 context.SaveChanges();
             }
         }
