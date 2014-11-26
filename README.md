@@ -1,7 +1,7 @@
 PhotoDealer
 ===========
 
-Web application for sale and purchase of photos.
+<b>Web application for sale and purchase of photos</b>
 
 PhotoDealer is ASP.NET MVC application developed for 10 days as individual project in ASP.NET MVC course of Telerik Academy 2014
 
@@ -12,6 +12,6 @@ Description:
 
 Note: Trial version of Kendo UI is used in this application. According to trial licence the Kendo UI files are not uploaded to this Git repository.
 
-If you want to see the application follow the link: http://photo-dealer.apphb.com/
-If you want to test the application you can login as user: user@photodealer.com, password: 123456
-If you want to see the administration panel you can login as administrator: admin@photodealer.com, password: 123456
+ - If you want to see the application follow the link: http://photo-dealer.apphb.com/
+ - If you want to test the application you can login as user: user@photodealer.com, password: 123456
+ - If you want to see the administration panel you can login as administrator: admin@photodealer.com, password: 123456
